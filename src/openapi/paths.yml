@@ -1,0 +1,88 @@
+"/notas":
+    get:
+      tags:
+      - Notas
+      summary: Recoger todas las notas en memoria
+      description: Recoger las notas que están almacenadas en memoria
+      responses:
+        200:
+          description: Lista de notas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Notes"
+    post:
+      tags:
+      - Notas
+      summary: Crear nota en memoria
+      description: Enviar los datos para crear una nota que sera almacenada en la
+        carpeta 'files'
+      requestBody:
+        description: Crear nota
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PostNotes"
+      responses:
+        201:
+          description: Nota creada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Notes"
+"/notas/{name}":
+    put:
+      tags:
+      - Notas
+      summary: Editar nota específica
+      description: Enviar los datos para editar una nota ya creada en la carpeta 'files'
+      parameters:
+      - name: name
+        in: path
+        description: Pon el nombre de la nota
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Editar nota
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PutNote"
+      responses:
+        201:
+          description: Nota editada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Notes"
+    delete:
+      tags:
+      - Notas
+      summary: Eliminar nota específica
+      description: Eliminar las notas de la carpeta 'files'
+      parameters:
+      - name: name
+        in: path
+        description: Pon el nombre de la nota
+        required: true
+        schema:
+          type: string
+      responses:
+        201:
+          description: Nota Eliminada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteNote"
+"/mail":
+  type: object
+  properties:
+    to:
+      type: string
+    subject:
+      type: string
+    text:
+      type: string

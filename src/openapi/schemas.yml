@@ -1,0 +1,30 @@
+Notes:
+  type: object
+  properties:
+    name:
+      type: string
+    data:
+      type: string
+      format: int64
+PostNotes:
+  type: object
+  properties:
+    name:
+      type: string
+    data:
+      type: string
+      format: int64
+PutNote:
+  type: object
+  properties:
+    name:
+      type: string
+    data:
+      type: string
+      format: int64
+DeleteNote:
+  type: object
+  properties:
+    name:
+      type: string
+    
