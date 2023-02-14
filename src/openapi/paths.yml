@@ -78,11 +78,21 @@
               schema:
                 $ref: "#/components/schemas/DeleteNote"
 "/mail":
-  type: object
-  properties:
-    to:
-      type: string
-    subject:
-      type: string
-    text:
-      type: string
+  post:
+    tags:
+    - Mail
+    summary: Enviar email
+    description: Enviar email a un correo específico
+    requestBody:
+        description: Enviar mail
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Email"
+    responses:
+        201:
+          description: Correo enviado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Email"

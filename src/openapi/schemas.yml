@@ -27,4 +27,11 @@ DeleteNote:
   properties:
     name:
       type: string
-    
+Email:
+  type: object
+  properties:
+    subject:
+      type: string
+    text:
+      type: string
+
