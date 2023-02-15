@@ -15,10 +15,15 @@ const smtp = {
   authUrl: 'https://developers.google.com/oauthplayground',
 };
 
+const mongodb = {
+
+};
+
 module.exports = {
   port,
   app,
   smtp,
+  mongodb,
   notes: {
     folder: 'files',
     ext: 'note',

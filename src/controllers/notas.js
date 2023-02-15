@@ -3,6 +3,10 @@ const fs = require('fs');
 const { logger } = require('../utils');
 const notasService = require('../services/notas');
 
+/* function createDate(req, res) {
+
+} */
+
 function recogerNotas(req, res) {
   const files = fs.readdirSync('./files');
   res.status(200).send(files);
