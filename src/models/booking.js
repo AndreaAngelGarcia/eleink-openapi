@@ -6,7 +6,7 @@ const bookingSchema = new Schema({
   size: { type: Number, unique: true, required: true },
   // image: { type: File, unique: true, required: true },
   date: { type: String, unique: true },
-  status: { type: String, unique: true },
+  status: { type: String, unique: true, default: 'pending' },
   price: { type: Number, unique: true },
 });
 

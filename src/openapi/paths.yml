@@ -1,12 +1,12 @@
-"/notas":
+"/user":
     get:
       tags:
-      - Notas
-      summary: Recoger todas las notas en memoria
-      description: Recoger las notas que están almacenadas en memoria
+      - User
+      summary: Recoger todos los usuarios en memoria
+      description: Recoger los usuarios que están almacenadas en memoria
       responses:
         200:
-          description: Lista de notas
+          description: Lista de usuarios
           content:
             application/json:
               schema:
@@ -15,10 +15,9 @@
                   $ref: "#/components/schemas/Notes"
     post:
       tags:
-      - Notas
-      summary: Crear nota en memoria
-      description: Enviar los datos para crear una nota que sera almacenada en la
-        carpeta 'files'
+      - User
+      summary: Crear usuario en memoria
+      description: Crear un usuario en específico en memoria
       requestBody:
         description: Crear nota
         content:
@@ -35,7 +34,7 @@
 "/notas/{name}":
     put:
       tags:
-      - Notas
+      - Booking
       summary: Editar nota específica
       description: Enviar los datos para editar una nota ya creada en la carpeta 'files'
       parameters:
@@ -60,7 +59,7 @@
                 $ref: "#/components/schemas/Notes"
     delete:
       tags:
-      - Notas
+      - Booking
       summary: Eliminar nota específica
       description: Eliminar las notas de la carpeta 'files'
       parameters:
