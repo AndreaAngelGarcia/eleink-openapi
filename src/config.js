@@ -16,7 +16,11 @@ const smtp = {
 };
 
 const mongodb = {
-
+  user: process.env.DATABASE_USER,
+  pass: process.env.DATABASE_PASS,
+  host: process.env.DATABASE_HOST,
+  port: process.env.DATABASE_PORT,
+  dbName: process.env.DATABASE_NAME,
 };
 
 module.exports = {
