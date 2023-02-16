@@ -12,6 +12,7 @@ La página web es un conjunto de páginas donde estarías su portfolio, una pág
 
 - Por otro lado tendremos la colección citas, donde podremos rellenar un cuestionario y se le enviará un correo al destinatario y otro a Elena.
 
+![BBDD](recursos/BBDD.PNG)
 
 ---
 
