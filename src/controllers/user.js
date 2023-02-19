@@ -1,43 +1,23 @@
 const fs = require('fs');
 
 const { logger } = require('../utils');
-const notasService = require('../services/notas');
+const userService = require('../services/mongodb-service/user');
+
+// CREAR USUARIO
+async function getUsers(req, res, next) {
+  try {
+    const { id } = req.params;
+    const users = await userService.findUserById(id);
+    return res.send(users);
+  } catch (error) {
+    return next(error);
+  }
+}
 
 /* function createDate(req, res) {
 
 } */
 
-function recogerNotas(req, res) {
-  const files = fs.readdirSync('./files');
-  res.status(200).send(files);
-  logger.info('OK - Notas mostradas');
-}
-
-function crearNota(req, res) {
-  const { name, data } = req.body;
-  const createdNote = notasService.crearNota(name, data);
-  res.status(201).send(createdNote);
-  logger.info('OK - Nota creada');
-}
-
-function editarNota(req, res) {
-  const { name } = req.params;
-  const { data } = req.body;
-  const editedNote = notasService.editarNota(name, data);
-  res.status(201).send(editedNote);
-  logger.info('OK - Nota editada');
-}
-
-function eliminarNota(req, res) {
-  const { name } = req.params;
-  const deletedNote = notasService.eliminarNota(name);
-  res.status(201).send(deletedNote);
-  logger.info('OK - Nota eliminada');
-}
-
 module.exports = {
-  recogerNotas,
-  crearNota,
-  editarNota,
-  eliminarNota,
+  getUsers,
 };

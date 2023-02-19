@@ -12,31 +12,31 @@
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Notes"
+                  $ref: "#/components/schemas/Users"
     post:
       tags:
       - User
       summary: Crear usuario en memoria
       description: Crear un usuario en específico en memoria
       requestBody:
-        description: Crear nota
+        description: Usuario creado
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PostNotes"
+              $ref: "#/components/schemas/PostUser"
       responses:
         201:
-          description: Nota creada
+          description: Usuario creado
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Notes"
-"/notas/{name}":
+                $ref: "#/components/schemas/PostUser"
+"/user/{id}":
     put:
       tags:
       - Booking
-      summary: Editar nota específica
-      description: Enviar los datos para editar una nota ya creada en la carpeta 'files'
+      summary: Editar una cita específica
+      description: Editar los datos de una cita en específico
       parameters:
       - name: name
         in: path

@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
+const { logger } = require('../utils');
 
 module.exports = async config => {
+  mongoose.set('strictQuery', false);
   const {
-    user, pass, host, port, dbName,
+    user, pass,
   } = config;
-  /* await mongoose.connect(`mongodb://${host}:${port}/${dbName}`, { user, pass });
-  console.log('CONNECTED!'); */
+  await mongoose.connect(`mongodb+srv://${user}:${pass}@cluster0.fdckmc6.mongodb.net/ELEINKTATTOO`);
+  logger.info('CONNECTED!');
 };

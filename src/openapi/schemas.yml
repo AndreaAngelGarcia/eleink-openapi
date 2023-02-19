@@ -1,31 +1,53 @@
-Notes:
+Users:
   type: object
   properties:
-    name:
+    name: 
       type: string
-    data:
+    email: 
       type: string
-      format: int64
-PostNotes:
+    birthday: 
+      type: Date
+    phone: 
+      type: string
+    password: 
+      type: string
+    userInstagram: 
+      type: string
+    rol: 
+      type: string
+PostUser:
   type: object
   properties:
-    name:
+    name: 
       type: string
-    data:
+    email: 
       type: string
-      format: int64
+    birthday: 
+      type: Date
+    phone: 
+      type: string
+    password: 
+      type: string
+    userInstagram: 
+      type: string
+    rol: 
+      type: string
 PutNote:
   type: object
   properties:
-    name:
+    name: 
       type: string
-    data:
+    email: 
       type: string
-      format: int64
-DeleteNote:
-  type: object
-  properties:
-    name:
+    birthday: 
+      type: Date
+    phone: 
+      type: string
+    password: 
+      type: string
+    userInstagram: 
+      type: string
+    rol: 
       type: string
 Email:
   type: object
