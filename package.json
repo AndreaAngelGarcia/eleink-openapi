@@ -7,10 +7,6 @@
   "scripts": {
     "start": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "@comment notas": "Atajamos la ejecución de notas entrando directamente a las opciones.",
-    "notas:crear": "node editorNotas.js 1",
-    "notas:editar": "node editorNotas.js 2",
-    "notas:eliminar": "node editorNotas.js 3",
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --fix --ignore-path .gitignore ."
   },

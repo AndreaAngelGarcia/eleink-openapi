@@ -1,4 +1,4 @@
-"/user":
+"/users":
     get:
       tags:
       - User

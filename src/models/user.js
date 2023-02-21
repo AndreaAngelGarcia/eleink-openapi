@@ -10,4 +10,4 @@ const userSchema = new Schema({
   rol: { type: String, enum: ['admin', 'client'], unique: true },
 });
 
-module.exports = model('User', userSchema);
+module.exports = model('Users', userSchema);

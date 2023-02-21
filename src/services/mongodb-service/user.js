@@ -2,7 +2,7 @@ const { logger } = require('../../utils');
 const { User } = require('../../models');
 
 // BUSCAR USUARIO
-function findAllUser(filters) {
+function getAllUsers(filters) {
   return User.find(filters);
 }
 
@@ -22,7 +22,7 @@ async function createUser(body) {
 // deleteUser
 
 module.exports = {
-  findAllUser,
+  getAllUsers,
   findUserById,
   createUser,
 };

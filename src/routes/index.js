@@ -2,13 +2,13 @@ const express = require('express');
 const authMiddleware = require('../middleware/auth-middleware');
 
 const { rootController } = require('../controllers');
-const notasRouter = require('./notas');
+const UserRouter = require('./user');
 const smtpController = require('../controllers/smtp');
 
 const router = express.Router();
 
 router.post('/', rootController);
-router.use('/notas', notasRouter);
+router.use('/users', UserRouter);
 /* router.get('/notas', recogerNotas); */
 router.post('/mail', smtpController.createMail);
 

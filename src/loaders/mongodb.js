@@ -6,6 +6,6 @@ module.exports = async config => {
   const {
     user, pass,
   } = config;
-  await mongoose.connect(`mongodb+srv://${user}:${pass}@cluster0.fdckmc6.mongodb.net/ELEINKTATTOO`);
+  await mongoose.connect(`mongodb+srv://${user}:${pass}@cluster0.fdckmc6.mongodb.net/ELEINK-TATTOO`);
   logger.info('CONNECTED!');
 };
