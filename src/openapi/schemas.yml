@@ -6,7 +6,8 @@ Users:
     email: 
       type: string
     birthday: 
-      type: Date
+      type: String
+      format: Date
     phone: 
       type: string
     password: 
@@ -23,7 +24,8 @@ PostUser:
     email: 
       type: string
     birthday: 
-      type: Date
+      type: string
+      format: date
     phone: 
       type: string
     password: 
@@ -40,7 +42,8 @@ PutNote:
     email: 
       type: string
     birthday: 
-      type: Date
+      type: String
+      format: Date
     phone: 
       type: string
     password: 

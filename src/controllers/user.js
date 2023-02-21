@@ -2,7 +2,7 @@ const { logger } = require('../utils');
 const userService = require('../services/mongodb-service/user');
 const Users = require('../models/user');
 
-// RECOGER USUARIOS POR ID
+// RECOGER USUARIOS
 async function getUsers(req, res, next) {
   try {
     const users = await userService.getAllUsers();
@@ -28,11 +28,17 @@ async function getUser(req, res, next) {
 // CREAR USUARIOS
 async function createUser(req, res, next) {
   try {
-    userService.createUser = new Users(req.body);
-    res.status(201).send();
+    const createdUser = await userService.createUser(req.body);
+    // userService.createUser(req.body);
+    res.status(201).send(createdUser);
     logger.info('OK - Usuario creado');
   } catch (error) {
-    error.status = 409;
+    if (error.code === 11000) {
+      error.statusCode = 409;
+    } else {
+      error.statusCode = 400;
+    }
+    logger.error('Usuario no creado');
     next(error);
   }
 }

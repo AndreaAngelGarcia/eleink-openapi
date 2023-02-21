@@ -13,7 +13,6 @@
                 type: array
                 items:
                   $ref: "#/components/schemas/Users"
-"/user":
     post:
       tags:
       - User

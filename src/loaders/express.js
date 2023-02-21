@@ -4,6 +4,7 @@ const swaggerUI = require('swagger-ui-express');
 // const OpenApiValidator = require('express-openapi-validator');
 const swaggerDocument = require('../openapi');
 const routes = require('../routes');
+const errorHandler = require('../middleware/error-middleware');
 
 module.exports = server => {
   server.use(express.json());
@@ -17,5 +18,5 @@ module.exports = server => {
   ); */
   server.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
   server.use(routes);
-  server.use((req, res) => res.status(404).send({ message: 'Not Found' }));
+  server.use(errorHandler);
 };

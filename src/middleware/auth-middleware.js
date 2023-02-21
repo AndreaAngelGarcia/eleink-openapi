@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken');
+/* const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
-const secret = '1234';
+const secret = '1234'; */
 
 /* const authMiddleware = async (req, res, next) => {
   // Obtener el token de la solicitud
