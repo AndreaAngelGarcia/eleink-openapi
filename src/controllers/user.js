@@ -29,8 +29,8 @@ async function getUser(req, res, next) {
 async function createUser(req, res, next) {
   try {
     userService.createUser = new Users(req.body);
-    logger.info('OK - Usuario creado');
     res.status(201).send();
+    logger.info('OK - Usuario creado');
   } catch (error) {
     error.status = 409;
     next(error);
