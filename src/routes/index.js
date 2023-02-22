@@ -3,13 +3,14 @@ const express = require('express');
 
 const { rootController } = require('../controllers');
 const UserRouter = require('./user');
+const BookingRouter = require('./booking');
 const smtpController = require('../controllers/smtp');
 
 const router = express.Router();
 
 router.post('/', rootController);
 router.use('/users', UserRouter);
-/* router.get('/notas', recogerNotas); */
+router.use('/booking', BookingRouter);
 router.post('/mail', smtpController.createMail);
 
 /* router.get('/api/private', authMiddleware, (req, res) => {
