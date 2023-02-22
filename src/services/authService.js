@@ -1,11 +1,38 @@
 const jwt = require('jsonwebtoken');
+const User = require('../models/user');
 
-const user = {
-  id: 123,
-  role: 'admin',
+const generateToken = user => {
+  const payload = {
+    sub: user.id,
+    iat: Date.now(),
+    exp: Date.now() + 1000 * 60 * 60 * 24 * 7, // Token válido por 7 días
+    role: user.admin, // aquí se incluiría el rol del usuario en el token
+  };
+  return jwt.sign(payload, process.env.JWT_SECRET);
 };
 
-const secret = 'secreto-de-tu-aplicacion';
+const verifyToken = token => {
+  try {
+    return jwt.verify(token, process.env.JWT_SECRET);
+  } catch (err) {
+    throw new Error('Invalid token');
+  }
+};
 
-const token = jwt.sign(user, secret, { expiresIn: '1h' });
-console.log(token);
+const loginUser = async (username, password) => {
+  const user = await User.findOne({ username });
+  if (!user) {
+    throw new Error('User not found');
+  }
+  const isMatch = await user.comparePassword(password);
+  if (!isMatch) {
+    throw new Error('Invalid password');
+  }
+  const token = generateToken(user);
+  return { token, user };
+};
+
+module.exports = {
+  loginUser,
+  verifyToken,
+};

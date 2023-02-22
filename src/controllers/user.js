@@ -43,8 +43,28 @@ async function createUser(req, res, next) {
   }
 }
 
+// MODIFICAR USUARIO
+// BORRAR USUARIO
+
+async function deleteUser(req, res, next) {
+  try {
+    const deletedUser = await userService.createUser(req.body);
+    res.status(201).send(deletedUser);
+    logger.info('OK - Usuario eliminado');
+  } catch (error) {
+    if (error.code === 11000) {
+      error.statusCode = 409;
+    } else {
+      error.statusCode = 400;
+    }
+    logger.error('Usuario no eliminado');
+    next(error);
+  }
+}
+
 module.exports = {
   getUsers,
   getUser,
   createUser,
+  deleteUser,
 };

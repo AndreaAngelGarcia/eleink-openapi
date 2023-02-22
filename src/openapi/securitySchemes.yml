@@ -1,4 +1,11 @@
 bearerAuth:
-  type: http
-  scheme: bearer
-  bearerFormat: JWT
+    type: http
+    scheme: bearer
+    bearerFormat: JWT
+    description: Token de autenticación JWT con campo "role" igual a "admin".
+    name: Authorization
+    in: header
+
+security:
+  - bearerAuth:
+      - role: admin

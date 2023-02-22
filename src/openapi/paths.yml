@@ -1,5 +1,7 @@
 "/users":
     get:
+      security:
+        - bearerAuth: []
       tags:
       - User
       summary: Recoger todos los usuarios en memoria
@@ -34,11 +36,11 @@
 "/user/{id}":
     put:
       tags:
-      - Booking
-      summary: Editar una cita específica
-      description: Editar los datos de una cita en específico
+      - User
+      summary: Editar un usuario específica
+      description: Editar los datos de un usuario en específico
       parameters:
-      - name: name
+      - name: nombre
         in: path
         description: Pon el nombre de la nota
         required: true
@@ -49,7 +51,85 @@
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PutNote"
+              $ref: "#/components/schemas/PutUser"
+      responses:
+        201:
+          description: Nota editada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Notes"
+    delete:
+      tags:
+      - User
+      summary: Eliminar usuario específica
+      description: Eliminar las usuarios de la memoria
+      parameters:
+      - name: nombre
+        in: path
+        description: Pon el nombre del usuario
+        required: true
+        schema:
+          type: string
+      responses:
+        201:
+          description: Usuario Eliminada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteUser"
+"/booking":
+    get:
+      tags:
+      - Booking
+      summary: Recoger todos los usuarios en memoria
+      description: Recoger los usuarios que están almacenadas en memoria
+      responses:
+        200:
+          description: Lista de usuarios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Users"
+    post:
+      tags:
+      - Booking
+      summary: Crear usuario en memoria
+      description: Crear un usuario en específico en memoria
+      requestBody:
+        description: Usuario creado
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PostUser"
+      responses:
+        201:
+          description: Usuario creado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostUser"
+"/booking/{id}":
+    put:
+      tags:
+      - Booking
+      summary: Editar un usuario específica
+      description: Editar los datos de un usuario en específico
+      parameters:
+      - name: nombre
+        in: path
+        description: Pon el nombre de la nota
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Editar nota
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PutUser"
       responses:
         201:
           description: Nota editada correctamente
@@ -60,22 +140,39 @@
     delete:
       tags:
       - Booking
-      summary: Eliminar nota específica
-      description: Eliminar las notas de la carpeta 'files'
+      summary: Eliminar usuario específica
+      description: Eliminar las usuarios de la memoria
       parameters:
-      - name: name
+      - name: nombre
         in: path
-        description: Pon el nombre de la nota
+        description: Pon el nombre del usuario
         required: true
         schema:
           type: string
       responses:
         201:
-          description: Nota Eliminada
+          description: Usuario Eliminada
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DeleteNote"
+                $ref: "#/components/schemas/DeleteUser"
+"/upload":
+  post:
+    tags:
+      - Booking
+    summary: "Carga una imagen"
+    consumes:
+      - "multipart/form-data" # Aquí se indica que se permitirá la carga de archivos
+    produces:
+      - "application/json"
+    parameters:
+      - in: formData
+        name: upFile
+        type: file # Aquí se define el tipo de parámetro como archivo
+        required: true
+    responses:
+      200:
+        description: "La imagen se cargó correctamente"
 "/mail":
   post:
     tags:

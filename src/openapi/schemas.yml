@@ -34,7 +34,7 @@ PostUser:
       type: string
     rol: 
       type: string
-PutNote:
+PutUser:
   type: object
   properties:
     name: 
@@ -43,7 +43,25 @@ PutNote:
       type: string
     birthday: 
       type: String
-      format: Date
+      format: date
+    phone: 
+      type: string
+    password: 
+      type: string
+    userInstagram: 
+      type: string
+    rol: 
+      type: string
+DeleteUser:
+  type: object
+  properties:
+    name: 
+      type: string
+    email: 
+      type: string
+    birthday: 
+      type: String
+      format: date
     phone: 
       type: string
     password: 
