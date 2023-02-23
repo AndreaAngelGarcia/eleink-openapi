@@ -9,7 +9,7 @@ const smtpController = require('../controllers/smtp');
 const router = express.Router();
 
 router.post('/', rootController);
-router.use('/users', UserRouter);
+router.use('', UserRouter);
 router.use('/booking', BookingRouter);
 router.post('/mail', smtpController.createMail);
 

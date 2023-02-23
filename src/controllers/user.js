@@ -1,6 +1,6 @@
 const { logger } = require('../utils');
 const userService = require('../services/mongodb-service/user');
-const Users = require('../models/user');
+const { user } = require('../models/user');
 
 // RECOGER USUARIOS
 async function getUsers(req, res, next) {
@@ -9,6 +9,7 @@ async function getUsers(req, res, next) {
     logger.info('OK - Usuarios mostrados');
     return res.status(201).send(users);
   } catch (error) {
+    logger.error('Usuarios no encontrados');
     return next(error);
   }
 }
@@ -44,11 +45,29 @@ async function createUser(req, res, next) {
 }
 
 // MODIFICAR USUARIO
-// BORRAR USUARIO
+async function updateUser(req, res, next) {
+  try {
+    const { email } = req.params;
+    const updatedUser = await userService.updateUser(email, req.body);
+    Object.assign(user, req.body);
+    res.status(201).send(updatedUser);
+    logger.info('OK - Usuario modificado');
+  } catch (error) {
+    if (error.code === 11000) {
+      error.statusCode = 409;
+    } else {
+      error.statusCode = 400;
+    }
+    logger.error('Usuario no modificado');
+    next(error);
+  }
+}
 
+// BORRAR USUARIO
 async function deleteUser(req, res, next) {
   try {
-    const deletedUser = await userService.createUser(req.body);
+    const { email } = req.params;
+    const deletedUser = await userService.deleteUser(email);
     res.status(201).send(deletedUser);
     logger.info('OK - Usuario eliminado');
   } catch (error) {
@@ -66,5 +85,6 @@ module.exports = {
   getUsers,
   getUser,
   createUser,
+  updateUser,
   deleteUser,
 };

@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 const { logger } = require('../../utils');
 const { User } = require('../../models');
 
@@ -19,23 +20,29 @@ async function createUser(body) {
 }
 
 // MODIFICAR USUARIO
-/* async function updateUser(body) {
-  const updatedUser = await new User(body).remove();
-  logger.info(`Deleted user with id: ${updatedUser.id} `);
+async function updateUser(body) {
+  const updatedUser = await User.updateOne(body);
+  logger.info(`Updated user: ${updatedUser}`);
   return updatedUser;
-} */
+}
 
 // BORRAR USUARIO
-async function deleteUser(body) {
-  const deletedUser = await new User(body).remove();
-  logger.info(`Deleted user with id: ${deletedUser.id} `);
-  return deletedUser;
+async function deleteUser(email) {
+  const filter = { email: email };
+  try {
+    const deletedUser = await User.remove(filter);
+    logger.info(`Deleted user with email: ${email}`);
+    return deletedUser;
+  } catch (error) {
+    logger.error(`Error deleting user with email ${email}: ${error}`);
+    throw error;
+  }
 }
 
 module.exports = {
   getAllUsers,
   findUserById,
   createUser,
-  /* updateUser, */
+  updateUser,
   deleteUser,
 };

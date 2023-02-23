@@ -1,7 +1,7 @@
 "/users":
     get:
-      security:
-        - bearerAuth: []
+       # security:
+        #- bearerAuth: []
       tags:
       - User
       summary: Recoger todos los usuarios en memoria
@@ -15,6 +15,7 @@
                 type: array
                 items:
                   $ref: "#/components/schemas/Users"
+"/user":
     post:
       tags:
       - User
@@ -33,16 +34,15 @@
             application/json:
               schema:
                 $ref: "#/components/schemas/PostUser"
-"/user/{id}":
     put:
       tags:
       - User
       summary: Editar un usuario específica
       description: Editar los datos de un usuario en específico
       parameters:
-      - name: nombre
+      - name: email
         in: path
-        description: Pon el nombre de la nota
+        description: Pon el correo del usuario que deseas modificar
         required: true
         schema:
           type: string
@@ -58,16 +58,17 @@
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Notes"
+                $ref: "#/components/schemas/Users"
+"/user/{email}":
     delete:
       tags:
       - User
       summary: Eliminar usuario específica
       description: Eliminar las usuarios de la memoria
       parameters:
-      - name: nombre
+      - name: email
         in: path
-        description: Pon el nombre del usuario
+        description: Pon el nombre del email del usuario
         required: true
         schema:
           type: string

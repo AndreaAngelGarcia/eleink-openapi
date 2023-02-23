@@ -42,7 +42,7 @@ PutUser:
     email: 
       type: string
     birthday: 
-      type: String
+      type: string
       format: date
     phone: 
       type: string
