@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable object-shorthand */
 const { logger } = require('../../utils');
 const { User } = require('../../models');
@@ -21,9 +22,15 @@ async function createUser(body) {
 
 // MODIFICAR USUARIO
 async function updateUser(body) {
-  const updatedUser = await User.updateOne(body);
-  logger.info(`Updated user: ${updatedUser}`);
-  return updatedUser;
+  const { email, ...datos } = body;
+  try {
+    const updatedUser = await User.findOneAndUpdate({ email }, datos);
+    logger.info(`Updated user with email: ${email}`);
+    return updatedUser;
+  } catch (error) {
+    logger.error(`Error updating user with email ${email}: ${error}`);
+    throw error;
+  }
 }
 
 // BORRAR USUARIO

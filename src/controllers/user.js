@@ -47,9 +47,7 @@ async function createUser(req, res, next) {
 // MODIFICAR USUARIO
 async function updateUser(req, res, next) {
   try {
-    const { email } = req.params;
-    const updatedUser = await userService.updateUser(email, req.body);
-    Object.assign(user, req.body);
+    const updatedUser = await userService.updateUser(req.body);
     res.status(201).send(updatedUser);
     logger.info('OK - Usuario modificado');
   } catch (error) {

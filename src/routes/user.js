@@ -5,14 +5,14 @@ const {
 } = require('../controllers/user');
 
 const router = express.Router();
-// const checkAdmin = require('../middleware/admin-middleware');
-// const UserController = require('../controllers/userController');
+const checkAdmin = require('../middleware/admin-middleware');
+const UserController = require('../controllers/userController');
 
-router.get('/users', getUsers);
-// router.get('/', checkAdmin, UserController.getUsers);
-router.post('/user', createUser);
-router.put('/user/:email', updateUser);
-router.delete('/user/:email', deleteUser);
+router.get('', getUsers);
+router.get('', checkAdmin, UserController.getUsers);
+router.post('', createUser);
+router.put('/:email', updateUser);
+router.delete('/:email', deleteUser);
 // router.get('/:name', recogerNota);
 // router.post('/', crearNota);
 // router.put('/:name', editarNota);

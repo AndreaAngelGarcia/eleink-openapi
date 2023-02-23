@@ -5,11 +5,20 @@ const { rootController } = require('../controllers');
 const UserRouter = require('./user');
 const BookingRouter = require('./booking');
 const smtpController = require('../controllers/smtp');
+// const userController = require('../controllers/userController');
+// const authController = require('../controllers/loginController');
+// const { jwtAuth } = require('../middleware/auth-middleware');
 
 const router = express.Router();
 
 router.post('/', rootController);
-router.use('', UserRouter);
+/*
+router.post('/login', authController.logIn);
+router.post('/signin', userController.CreateUser);
+
+// router.use(jwtAuth);
+*/
+router.use('/users', UserRouter);
 router.use('/booking', BookingRouter);
 router.post('/mail', smtpController.createMail);
 

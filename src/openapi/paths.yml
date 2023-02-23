@@ -1,7 +1,7 @@
 "/users":
     get:
-       # security:
-        #- bearerAuth: []
+      # security:
+      # - bearerAuth: []
       tags:
       - User
       summary: Recoger todos los usuarios en memoria
@@ -15,7 +15,6 @@
                 type: array
                 items:
                   $ref: "#/components/schemas/Users"
-"/user":
     post:
       tags:
       - User
@@ -34,6 +33,7 @@
             application/json:
               schema:
                 $ref: "#/components/schemas/PostUser"
+"/users/{email}":
     put:
       tags:
       - User
@@ -59,7 +59,6 @@
             application/json:
               schema:
                 $ref: "#/components/schemas/Users"
-"/user/{email}":
     delete:
       tags:
       - User
