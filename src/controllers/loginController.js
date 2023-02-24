@@ -1,4 +1,4 @@
-const { loginUser } = require('../services/authService');
+const { loginUser } = require('../services/auth-service');
 
 const loginController = async (req, res, next) => {
   try {

@@ -1,4 +1,4 @@
-const { verifyToken } = require('../services/authService');
+const { verifyToken } = require('../services/auth-service');
 
 const verifyTokenController = async (req, res, next) => {
   try {

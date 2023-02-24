@@ -1,23 +1,21 @@
 const express = require('express');
-// const authMiddleware = require('../middleware/auth-middleware');
 
 const { rootController } = require('../controllers');
 const UserRouter = require('./user');
 const BookingRouter = require('./booking');
 const smtpController = require('../controllers/smtp');
-// const userController = require('../controllers/userController');
-// const authController = require('../controllers/loginController');
+// const { authController } = require('../controllers/loginController');
 // const { jwtAuth } = require('../middleware/auth-middleware');
 
 const router = express.Router();
 
 router.post('/', rootController);
-/*
-router.post('/login', authController.logIn);
-router.post('/signin', userController.CreateUser);
+
+// router.post('/login', authController.logIn);
+// router.post('/signin', createUser);
 
 // router.use(jwtAuth);
-*/
+
 router.use('/users', UserRouter);
 router.use('/booking', BookingRouter);
 router.post('/mail', smtpController.createMail);

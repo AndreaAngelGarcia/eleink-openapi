@@ -23,6 +23,10 @@ const mongodb = {
   dbName: process.env.DATABASE_NAME,
 };
 
+const jwt = {
+  secretKey: process.env.JWT_SECRET,
+};
+
 module.exports = {
   port,
   app,
@@ -32,4 +36,5 @@ module.exports = {
     folder: 'files',
     ext: 'note',
   },
+  jwt,
 };

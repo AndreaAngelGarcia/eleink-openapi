@@ -1,9 +1,10 @@
-/* const jwt = require('jsonwebtoken');
+/* eslint-disable consistent-return */
+const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
-const secret = '1234'; */
+const secret = 'root';
 
-/* const authMiddleware = async (req, res, next) => {
+const authMiddleware = async (req, res, next) => {
   // Obtener el token de la solicitud
   const token = req.headers.authorization;
 
@@ -37,5 +38,3 @@ const secret = '1234'; */
 module.exports = {
   authMiddleware,
 };
-
-*/

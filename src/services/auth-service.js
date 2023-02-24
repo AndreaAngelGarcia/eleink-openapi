@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+const { logger } = require('../utils');
 
 const generateToken = user => {
   const payload = {
@@ -8,6 +9,7 @@ const generateToken = user => {
     exp: Date.now() + 1000 * 60 * 60 * 24 * 7, // Token válido por 7 días
     role: user.admin, // aquí se incluiría el rol del usuario en el token
   };
+  logger.info(payload);
   return jwt.sign(payload, process.env.JWT_SECRET);
 };
 

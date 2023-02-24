@@ -5,17 +5,14 @@ const {
 } = require('../controllers/user');
 
 const router = express.Router();
-const checkAdmin = require('../middleware/admin-middleware');
+// const checkAdmin = require('../middleware/admin-middleware');
+const { authMiddleware } = require('../middleware/auth-middleware');
 const UserController = require('../controllers/userController');
 
-router.get('', getUsers);
-router.get('', checkAdmin, UserController.getUsers);
+router.get('', authMiddleware, UserController.getUsers);
+// router.get('', checkAdmin, UserController.getUsers);
 router.post('', createUser);
 router.put('/:email', updateUser);
 router.delete('/:email', deleteUser);
-// router.get('/:name', recogerNota);
-// router.post('/', crearNota);
-// router.put('/:name', editarNota);
-// router.delete('/:name', eliminarNota);
 
 module.exports = router;
