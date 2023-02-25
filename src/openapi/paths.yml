@@ -1,23 +1,7 @@
 "/users":
-    get:
-      security:
-      - bearerAuth: []
-      tags:
-      - Admin
-      summary: Recoger todos los usuarios en memoria
-      description: Recoger los usuarios que están almacenadas en memoria
-      responses:
-        200:
-          description: Lista de usuarios
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Users"
-        404:
-          description: No autorizado 
     post:
+      tags:
+      - Sign in
       summary: Crear usuario en memoria
       description: Crear un usuario en específico en memoria
       requestBody:
@@ -33,10 +17,28 @@
             application/json:
               schema:
                 $ref: "#/components/schemas/PostUser"
+    get:
+      security:
+      - bearerAuth: []
+      tags:
+      - Admin - users
+      summary: Recoger todos los usuarios en memoria
+      description: Recoger los usuarios que están almacenadas en memoria
+      responses:
+        200:
+          description: Lista de usuarios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Users"
+        404:
+          description: No autorizado 
 "/users/{email}":
     put:
       tags:
-      - Admin
+      - Admin - users
       summary: Editar un usuario específica
       description: Editar los datos de un usuario en específico
       parameters:
@@ -61,7 +63,7 @@
                 $ref: "#/components/schemas/Users"
     delete:
       tags:
-      - Admin
+      - Admin - users
       summary: Eliminar usuario específica
       description: Eliminar las usuarios de la memoria
       parameters:
@@ -81,7 +83,7 @@
 "/booking":
     get:
       tags:
-      - Admin
+      - Admin - booking
       summary: Recoger todas las citas en memoria
       description: Recoger las citas que están almacenadas en memoria
       responses:
@@ -95,7 +97,7 @@
                   $ref: "#/components/schemas/Users"
     post:
       tags:
-      - Booking
+      - Log in
       summary: Crear una cita
       description: Crear una cita en específico en memoria en estado pendiente
       requestBody:
@@ -114,7 +116,7 @@
 "/booking/{id}":
     put:
       tags:
-      - Booking
+      - Admin - booking
       summary: Editar una cita específica
       description: Editar los datos de un usuario en específico
       parameters:

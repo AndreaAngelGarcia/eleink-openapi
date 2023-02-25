@@ -1,5 +1,6 @@
 const { logger } = require('../utils');
 const bookingService = require('../services/mongodb-service/booking');
+const { createMail } = require('./smtp');
 
 // RECOGER TODAS LAS CITAS
 async function getAllBookings(req, res, next) {
@@ -50,6 +51,7 @@ async function acceptBooking(req, res, next) {
     const updatedBooking = await bookingService.acceptBooking(id, date, price);
 
     res.status(200).json(updatedBooking);
+    createMail();
     logger.info('Booking accepted');
   } catch (error) {
     next(error);

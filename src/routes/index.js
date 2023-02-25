@@ -6,11 +6,12 @@ const BookingRouter = require('./booking');
 const smtpController = require('../controllers/smtp');
 // const { authController } = require('../controllers/loginController');
 // const { jwtAuth } = require('../middleware/auth-middleware');
+const LoginController = require('../controllers/loginController');
 
 const router = express.Router();
 
 router.post('/', rootController);
-
+router.post('/logIn', LoginController.logIn);
 // router.post('/login', authController.logIn);
 // router.post('/signin', createUser);
 

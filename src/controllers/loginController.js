@@ -1,15 +1,34 @@
-const { loginUser } = require('../services/auth-service');
+/* eslint-disable consistent-return */
+const jwt = require('jsonwebtoken');
+const User = require('../models/user');
 
-const loginController = async (req, res, next) => {
+async function logIn(req, res, next) {
   try {
-    const { username, password } = req.body;
-    const { token, user } = await loginUser(username, password);
-    res.status(200).json({ token, user });
-  } catch (err) {
-    next(err);
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(401).json({ message: 'Authentication failed' });
+    }
+
+    const isPasswordValid = await (user.password);
+
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: 'Authentication failed' });
+    }
+
+    const token = jwt.sign(
+      { userId: user._id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' },
+    );
+
+    res.status(200).json({ token });
+  } catch (error) {
+    next(error);
   }
-};
+}
 
 module.exports = {
-  loginController,
+  logIn,
 };
