@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-/* eslint-disable object-shorthand */
 const { logger } = require('../../utils');
 const { User } = require('../../models');
 
@@ -35,7 +33,7 @@ async function updateUser(body) {
 
 // BORRAR USUARIO
 async function deleteUser(email) {
-  const filter = { email: email };
+  const filter = { email };
   try {
     const deletedUser = await User.remove(filter);
     logger.info(`Deleted user with email: ${email}`);

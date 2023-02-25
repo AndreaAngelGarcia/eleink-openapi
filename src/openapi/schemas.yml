@@ -16,6 +16,37 @@ Users:
       type: string
     rol: 
       type: string
+Booking:
+  type: object
+  properties:
+    description: 
+      type: string
+    bodyPlace: 
+      type: string
+    size: 
+      type: string
+    image: 
+      type: string
+    date: 
+      type: string
+      format: Date
+    status: 
+      type: string
+    price: 
+      type: string
+    user: 
+      type: string
+PostBooking:
+    type: object
+    properties:
+      description: 
+        type: string
+      bodyPlace: 
+        type: string
+      size: 
+        type: string
+      image: 
+        type: string
 PostUser:
   type: object
   properties:

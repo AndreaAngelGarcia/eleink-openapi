@@ -1,10 +1,10 @@
 const express = require('express');
-
-// const { getUsers, createUser } = require('../controllers/user');
+const { getAllBookings, createBooking, acceptBooking } = require('../controllers/booking');
 
 const router = express.Router();
 
-/* router.get('/', getBooking);
-router.post('', createUser); */
+router.get('', getAllBookings);
+router.post('', createBooking);
+router.put('/:id', acceptBooking);
 
 module.exports = router;

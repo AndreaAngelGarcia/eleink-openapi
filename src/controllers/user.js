@@ -1,6 +1,5 @@
 const { logger } = require('../utils');
 const userService = require('../services/mongodb-service/user');
-const { user } = require('../models/user');
 
 // RECOGER USUARIOS
 async function getUsers(req, res, next) {
