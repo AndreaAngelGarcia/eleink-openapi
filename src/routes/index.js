@@ -14,7 +14,6 @@ router.post('/', rootController);
 router.post('/logIn', LoginController.logIn);
 // router.post('/login', authController.logIn);
 // router.post('/signin', createUser);
-
 // router.use(jwtAuth);
 
 router.use('/users', UserRouter);

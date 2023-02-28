@@ -5,17 +5,17 @@ const User = require('../models/user');
 async function logIn(req, res, next) {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email, password });
 
     if (!user) {
-      return res.status(401).json({ message: 'Authentication failed' });
+      return res.status(401).json({ message: 'El usuario o la contraseña es incorrecta' });
     }
 
-    const isPasswordValid = await (user.password);
+    /* const isPasswordValid = await (user.password);
 
-    if (!isPasswordValid) {
-      return res.status(401).json({ message: 'Authentication failed' });
-    }
+    if (!isPasswordValid === password) {
+      return res.status(401).json({ message: 'La contraseña no es correcta' });
+    } */
 
     const token = jwt.sign(
       { userId: user._id, email: user.email },
