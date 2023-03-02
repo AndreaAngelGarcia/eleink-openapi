@@ -3,7 +3,7 @@ const { Booking } = require('../../models');
 
 // BUSCAR USUARIO
 function getAllBookings(filters) {
-  return Booking.find(filters);
+  return Booking.find(filters).populate('user', '-password');
 }
 
 // BUSCAR USUARIO POR ID

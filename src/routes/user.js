@@ -7,7 +7,7 @@ const {
 const router = express.Router();
 // const checkAdmin = require('../middleware/admin-middleware');
 const { authMiddleware } = require('../middleware/auth-middleware');
-const UserController = require('../controllers/userController');
+const UserController = require('../controllers/user');
 
 router.get('', authMiddleware, UserController.getUsers);
 // router.get('', checkAdmin, UserController.getUsers);

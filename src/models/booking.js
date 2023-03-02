@@ -8,7 +8,7 @@ const bookingSchema = new Schema({
   date: { type: String, format: Date },
   status: { type: String },
   price: { type: String },
-  user: { type: Types.ObjectId, ref: 'User' },
+  user: { type: Types.ObjectId, ref: 'Users' },
 });
 
 module.exports = model('Booking', bookingSchema);

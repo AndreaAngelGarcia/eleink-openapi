@@ -5,7 +5,8 @@ const User = require('../models/user');
 const secret = 'root';
 
 const authMiddleware = async (req, res, next) => {
-  const token = req.headers.authorization;
+  console.log(req.headers.authorization);
+  const token = req.headers.authorization.substring(7);
 
   if (!token) {
     return res.status(401).json({ message: 'No se proporcionó un token de autenticación.' });
@@ -32,6 +33,18 @@ const authMiddleware = async (req, res, next) => {
     // Si el token no es válido, devolver un error 401
     return res.status(401).send({ message: 'El token de autenticación no es válido.' });
   }
+};
+
+const itsMe = async (req, res, next) => {
+  if (req.user.rol === 'admin') {
+    next();
+  }
+
+  if (req.params.email === req.user.email) {
+    next();
+  }
+
+  return res.status(403).send({ message: 'Forbidden' });
 };
 
 module.exports = {

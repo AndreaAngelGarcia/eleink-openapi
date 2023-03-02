@@ -51,7 +51,7 @@ async function acceptBooking(req, res, next) {
     const updatedBooking = await bookingService.acceptBooking(id, date, price);
 
     res.status(200).json(updatedBooking);
-    logger.info('Booking accepted');
+    logger.info('Cita aceptada');
   } catch (error) {
     next(error);
   }
@@ -64,7 +64,7 @@ async function cancelBooking(req, res, next) {
     const cancelledBooking = await bookingService.cancelBooking(id);
 
     res.status(200).json(cancelledBooking);
-    logger.info('Booking cancelled');
+    logger.info('Cita cancelada');
   } catch (error) {
     next(error);
   }

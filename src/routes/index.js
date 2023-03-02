@@ -18,6 +18,7 @@ router.post('/logIn', LoginController.logIn);
 
 router.use('/users', UserRouter);
 router.use('/booking', BookingRouter);
+// router.use('/admin', adminAuth, adminRoutes);
 
 router.post('/upload');
 router.post('/mail', smtpController.createMail);

@@ -18,8 +18,8 @@ async function logIn(req, res, next) {
     } */
 
     const token = jwt.sign(
-      { userId: user._id, email: user.email },
-      process.env.JWT_SECRET,
+      { userId: user._id, email: user.email, rol: user.rol },
+      'root',
       { expiresIn: '1h' },
     );
 

@@ -28,7 +28,9 @@ async function getUser(req, res, next) {
 // CREAR USUARIOS
 async function createUser(req, res, next) {
   try {
-    const createdUser = await userService.createUser(req.body);
+    const userBody = req.body;
+    userBody.rol = 'client';
+    const createdUser = await userService.createUser(userBody);
     // userService.createUser(req.body);
     res.status(201).send(createdUser);
     logger.info('OK - Usuario creado');
