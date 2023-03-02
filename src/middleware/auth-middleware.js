@@ -6,7 +6,8 @@ const secret = 'root';
 
 const authMiddleware = async (req, res, next) => {
   console.log(req.headers.authorization);
-  const token = req.headers.authorization.substring(7);
+
+  const token = req.headers.authorization;
 
   if (!token) {
     return res.status(401).json({ message: 'No se proporcionó un token de autenticación.' });

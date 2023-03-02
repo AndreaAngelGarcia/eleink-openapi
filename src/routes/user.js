@@ -12,7 +12,7 @@ const UserController = require('../controllers/user');
 router.get('', authMiddleware, UserController.getUsers);
 // router.get('', checkAdmin, UserController.getUsers);
 router.post('', createUser);
-router.put('/:email', updateUser);
+router.put('/:email', authMiddleware, UserController.updateUser);
 router.delete('/:email', deleteUser);
 
 module.exports = router;
