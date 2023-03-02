@@ -120,14 +120,14 @@
       summary: Editar una cita específica
       description: Editar los datos de un usuario en específico
       parameters:
-      - name: nombre
+      - name: id
         in: path
-        description: Pon el nombre de la nota
+        description: Pon el id de la cita
         required: true
         schema:
           type: string
       requestBody:
-        description: Editar nota
+        description: Editar cita
         content:
           application/json:
             schema:
@@ -138,26 +138,26 @@
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Notes"
+                $ref: "#/components/schemas/Booking"
     delete:
       tags:
-      - Admin
+      - Admin - booking
       summary: Cancelar una cita específica
       description: Eliminar cita en la memoria
       parameters:
-      - name: nombre
+      - name: id
         in: path
-        description: Pon el nombre del usuario
+        description: Pon el id de la cita
         required: true
         schema:
           type: string
       responses:
         201:
-          description: Usuario Eliminada
+          description: Cita eliminada
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DeleteUser"
+                $ref: "#/components/schemas/Booking"
 "/upload":
   post:
     tags:
