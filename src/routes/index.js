@@ -18,16 +18,8 @@ router.post('/logIn', LoginController.logIn);
 
 router.use('/users', UserRouter);
 router.use('/booking', BookingRouter);
+
+router.post('/upload');
 router.post('/mail', smtpController.createMail);
 
-/* router.get('/api/private', authMiddleware, (req, res) => {
-  // En este punto, podemos estar seguros de que el usuario está autenticado
-  // y podemos utilizar la información de su token para tomar decisiones de autorización
-  if (req.userRole === 'admin') {
-    res.json({ message: 'Hola administrador.' });
-  } else {
-    res.status(403).json({ message: 'No tienes permiso para acceder a esta ruta.' });
-  }
-});
-*/
 module.exports = router;
