@@ -5,7 +5,6 @@ const User = require('../models/user');
 const secret = 'root';
 
 const authMiddleware = async (req, res, next) => {
-  // Obtener el token de la solicitud
   const token = req.headers.authorization;
 
   if (!token) {
@@ -31,7 +30,7 @@ const authMiddleware = async (req, res, next) => {
     next();
   } catch (err) {
     // Si el token no es válido, devolver un error 401
-    return res.status(401).json({ message: 'El token de autenticación no es válido.' });
+    return res.status(401).send({ message: 'El token de autenticación no es válido.' });
   }
 };
 

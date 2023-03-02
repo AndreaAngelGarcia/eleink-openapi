@@ -45,6 +45,25 @@ async function acceptBooking(id, date, price) {
   return updatedBooking;
 }
 
+// CANCELAR CITA
+async function cancelBooking(id) {
+  const cancelledBooking = await Booking.findByIdAndUpdate(
+    id,
+    {
+      status: 'cancelled',
+    },
+    { new: true },
+  );
+
+  if (!cancelledBooking) {
+    const error = new Error('Booking not found');
+    error.statusCode = 404;
+    throw error;
+  }
+
+  return cancelledBooking;
+}
+
 // MODIFICAR USUARIO
 async function updateBooking(body) {
   const { email, ...datos } = body;
@@ -58,15 +77,15 @@ async function updateBooking(body) {
   }
 }
 
-// BORRAR USUARIO
-async function deleteBooking(email) {
-  const filter = { email };
+// BORRAR CITA
+async function deleteBooking(id) {
+  const filter = { id };
   try {
-    const deletedUser = await Booking.remove(filter);
-    logger.info(`Deleted user with email: ${email}`);
-    return deletedUser;
+    const deletedBooking = await Booking.deleteOne(filter);
+    logger.info(`Deleted user with id: ${id}`);
+    return deletedBooking;
   } catch (error) {
-    logger.error(`Error deleting user with email ${email}: ${error}`);
+    logger.error(`Error deleting user with id ${id}: ${error}`);
     throw error;
   }
 }
@@ -76,6 +95,7 @@ module.exports = {
   findBookingById,
   createBooking,
   acceptBooking,
+  cancelBooking,
   updateBooking,
   deleteBooking,
 };

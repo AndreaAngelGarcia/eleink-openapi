@@ -6,7 +6,7 @@ const bookingSchema = new Schema({
   size: { type: String, required: true },
   image: { data: Buffer, contentType: String },
   date: { type: String, format: Date },
-  status: { type: String, default: 'pending' },
+  status: { type: String },
   price: { type: String },
   user: { type: Types.ObjectId, ref: 'User' },
 });

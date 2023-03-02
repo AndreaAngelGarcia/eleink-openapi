@@ -1,6 +1,5 @@
 const { logger } = require('../utils');
 const bookingService = require('../services/mongodb-service/booking');
-const { createMail } = require('./smtp');
 
 // RECOGER TODAS LAS CITAS
 async function getAllBookings(req, res, next) {
@@ -26,7 +25,7 @@ async function getBookingById(req, res, next) {
   }
 }
 
-// CREAR USUARIOS
+// CREAR CITA
 async function createBooking(req, res, next) {
   try {
     const createdBooking = await bookingService.createBooking(req.body);
@@ -43,6 +42,7 @@ async function createBooking(req, res, next) {
   }
 }
 
+// ACEPTAR CITA
 async function acceptBooking(req, res, next) {
   try {
     const { id } = req.params;
@@ -51,8 +51,20 @@ async function acceptBooking(req, res, next) {
     const updatedBooking = await bookingService.acceptBooking(id, date, price);
 
     res.status(200).json(updatedBooking);
-    createMail();
     logger.info('Booking accepted');
+  } catch (error) {
+    next(error);
+  }
+}
+
+// CANCELAR CITA
+async function cancelBooking(req, res, next) {
+  try {
+    const { id } = req.params;
+    const cancelledBooking = await bookingService.cancelBooking(id);
+
+    res.status(200).json(cancelledBooking);
+    logger.info('Booking cancelled');
   } catch (error) {
     next(error);
   }
@@ -75,20 +87,20 @@ async function updateBooking(req, res, next) {
   }
 }
 
-// BORRAR USUARIO
+// BORRAR CITA
 async function deleteBooking(req, res, next) {
   try {
-    const { email } = req.params;
-    const deletedUser = await bookingService.deleteUser(email);
-    res.status(201).send(deletedUser);
-    logger.info('OK - Usuario eliminado');
+    const { id } = req.params;
+    const deletedBooking = await bookingService.deleteBooking(id);
+    res.status(201).send(deletedBooking);
+    logger.info('OK - Cita eliminada');
   } catch (error) {
     if (error.code === 11000) {
       error.statusCode = 409;
     } else {
       error.statusCode = 400;
     }
-    logger.error('Usuario no eliminado');
+    logger.error('Cita no eliminada');
     next(error);
   }
 }
@@ -98,6 +110,7 @@ module.exports = {
   getBookingById,
   createBooking,
   acceptBooking,
+  cancelBooking,
   updateBooking,
   deleteBooking,
 };
