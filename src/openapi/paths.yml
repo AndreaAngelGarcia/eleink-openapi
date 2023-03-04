@@ -1,4 +1,4 @@
-"/users":
+"/signin":
     post:
       tags:
       - Sign in
@@ -17,6 +17,26 @@
             application/json:
               schema:
                 $ref: "#/components/schemas/PostUser"
+"/login":
+    post:
+      tags:
+      - Log in
+      summary: Loguearnos en la página
+      description: Hacer login con un email y contraseña
+      requestBody:
+        description: Login completed
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Login"
+      responses:
+        201:
+          description: Login completed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Login"
+"/users":
     get:
       security:
       - bearerAuth: []

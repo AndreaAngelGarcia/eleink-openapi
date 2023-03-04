@@ -1,7 +1,7 @@
 const { logger } = require('../../utils');
 const { Booking } = require('../../models');
 
-// BUSCAR USUARIO
+// BUSCAR CITA
 function getAllBookings(filters) {
   return Booking.find(filters).populate('user', '-password');
 }
@@ -11,10 +11,11 @@ function findBookingById(id) {
   return Booking.findById(id);
 }
 
-// CREAR USUARIO
-async function createBooking(bookingData) {
+// CREAR CITA
+async function createBooking(bookingData, file) {
   const pendingBooking = {
-    ...bookingData,
+    ...bookingData, 
+    image: file.originalname,
     status: 'pending',
     date: 'pending',
     price: 'pending',

@@ -4,7 +4,7 @@ const bookingSchema = new Schema({
   description: { type: String, required: true },
   bodyPlace: { type: String, required: true },
   size: { type: String, required: true },
-  image: { data: Buffer, contentType: String },
+  image: { type: String },
   date: { type: String, format: Date },
   status: { type: String },
   price: { type: String },

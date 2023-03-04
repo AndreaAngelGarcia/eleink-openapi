@@ -8,13 +8,12 @@ const {
 const router = express.Router();
 
 router.get('', getAllBookings);
-router.post('', createBooking);
 router.put('/:id', acceptBooking);
 router.patch(':id', cancelBooking);
 router.delete('', deleteBooking);
 
-router.post('/upload', upload.single('myFile'), (req, res) => {
-  res.json({ message: 'Archivo subido exitosamente' });
+router.post('/upload', upload.single('myFile'),createBooking, (req, res) => {
+  res.json({ message: 'Archivo subido exitosamente' })
 });
 
 module.exports = router;

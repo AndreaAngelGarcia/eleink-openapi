@@ -28,7 +28,8 @@ async function getBookingById(req, res, next) {
 // CREAR CITA
 async function createBooking(req, res, next) {
   try {
-    const createdBooking = await bookingService.createBooking(req.body);
+    const file = req.file;
+    const createdBooking = await bookingService.createBooking(req.body, file);
     res.status(201).send(createdBooking);
     logger.info('OK - Cita creada');
   } catch (error) {
