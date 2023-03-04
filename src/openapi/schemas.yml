@@ -101,6 +101,13 @@ DeleteUser:
       type: string
     rol: 
       type: string
+Login:
+  type: object
+  properties:
+    email:
+      type: string
+    password:
+      type: string
 Email:
   type: object
   properties:
