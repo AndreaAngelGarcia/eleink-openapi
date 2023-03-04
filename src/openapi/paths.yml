@@ -37,6 +37,8 @@
           description: No autorizado 
 "/users/{email}":
     put:
+      security:
+      - bearerAuth: []
       tags:
       - Admin - users
       summary: Editar un usuario específica
@@ -62,6 +64,8 @@
               schema:
                 $ref: "#/components/schemas/Users"
     delete:
+      security:
+      - bearerAuth: []
       tags:
       - Admin - users
       summary: Eliminar usuario específica
@@ -82,6 +86,8 @@
                 $ref: "#/components/schemas/DeleteUser"
 "/booking":
     get:
+      security:
+      - bearerAuth: []
       tags:
       - Admin - booking
       summary: Recoger todas las citas en memoria
@@ -96,6 +102,8 @@
                 items:
                   $ref: "#/components/schemas/Users"
     post:
+      security:
+      - bearerAuth: []
       tags:
       - Log in
       summary: Crear una cita
@@ -115,6 +123,8 @@
                 $ref: "#/components/schemas/Booking"
 "/booking/{id}":
     put:
+      security:
+      - bearerAuth: []
       tags:
       - Admin - booking
       summary: Editar una cita específica
@@ -140,6 +150,8 @@
               schema:
                 $ref: "#/components/schemas/Booking"
     delete:
+      security:
+      - bearerAuth: []
       tags:
       - Admin - booking
       summary: Cancelar una cita específica
@@ -164,13 +176,13 @@
       - Booking
     summary: "Carga una imagen"
     consumes:
-      - "multipart/form-data" # Aquí se indica que se permitirá la carga de archivos
+      - "multipart/form-data" 
     produces:
       - "application/json"
     parameters:
       - in: formData
         name: upFile
-        type: file # Aquí se define el tipo de parámetro como archivo
+        type: file 
         required: true
     responses:
       200:

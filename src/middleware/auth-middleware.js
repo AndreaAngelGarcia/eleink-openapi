@@ -7,7 +7,7 @@ const secret = 'root';
 const authMiddleware = async (req, res, next) => {
   console.log(req.headers.authorization);
 
-  const token = req.headers.authorization;
+  const token = req.headers.authorization.substring(7);
 
   if (!token) {
     return res.status(401).json({ message: 'No se proporcionó un token de autenticación.' });
@@ -39,15 +39,17 @@ const authMiddleware = async (req, res, next) => {
 const itsMe = async (req, res, next) => {
   if (req.user.rol === 'admin') {
     next();
-  }
+  } else {
 
-  if (req.params.email === req.user.email) {
-    next();
-  }
+    if (req.params.password === req.user.email) {
+      next();
+    }
 
-  return res.status(403).send({ message: 'Forbidden' });
+    return res.status(403).send({ message: 'Forbidden' });
+  }
 };
 
 module.exports = {
   authMiddleware,
+  itsMe
 };
