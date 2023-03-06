@@ -27,7 +27,7 @@ async function createBooking(bookingData, file) {
     date: 'pending',
     price: 'pending',
   };
-  const createdBooking = await (await Booking.create(pendingBooking));
+  const createdBooking = await Booking.create(pendingBooking);
   logger.info(`Created booking with id: ${createdBooking.id} `);
   return createdBooking;
 }
@@ -72,17 +72,23 @@ async function cancelBooking(id) {
   return cancelledBooking;
 }
 
-// MODIFICAR USUARIO
-async function updateBooking(body) {
-  const { email, ...datos } = body;
-  try {
-    const updatedBooking = await Booking.findOneAndUpdate({ email }, datos);
-    logger.info(`Updated user with email: ${email}`);
-    return updatedBooking;
-  } catch (error) {
-    logger.error(`Error updating user with email ${email}: ${error}`);
+// CAMABIAR FECHA
+async function changeDateBooking(id, date) {
+  const updatedBooking = await Booking.findByIdAndUpdate(
+    id,
+    {
+      date,
+    },
+    { new: true },
+  );
+
+  if (!updatedBooking) {
+    const error = new Error('Booking not found');
+    error.statusCode = 404;
     throw error;
   }
+
+  return updatedBooking;
 }
 
 // BORRAR CITA
@@ -103,6 +109,6 @@ module.exports = {
   createBooking,
   acceptBooking,
   cancelBooking,
-  updateBooking,
+  changeDateBooking,
   deleteBooking,
 };

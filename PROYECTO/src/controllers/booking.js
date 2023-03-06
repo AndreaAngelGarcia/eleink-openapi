@@ -82,19 +82,17 @@ async function cancelBooking(req, res, next) {
   }
 }
 
-// MODIFICAR USUARIO
-async function updateBooking(req, res, next) {
+// CAMBIAR FECHA DE LA CITA
+async function changeDateBooking(req, res, next) {
   try {
-    const updatedUser = await bookingService.updateUser(req.body);
-    res.status(201).send(updatedUser);
-    logger.info('OK - Usuario modificado');
+    const { id } = req.params;
+    const { date } = req.body;
+
+    const updatedBooking = await bookingService.changeDateBooking(id, date);
+
+    res.status(200).json(updatedBooking);
+    logger.info('Fecha cambiada');
   } catch (error) {
-    if (error.code === 11000) {
-      error.statusCode = 409;
-    } else {
-      error.statusCode = 400;
-    }
-    logger.error('Usuario no modificado');
     next(error);
   }
 }
@@ -123,6 +121,6 @@ module.exports = {
   createBooking,
   acceptBooking,
   cancelBooking,
-  updateBooking,
+  changeDateBooking,
   deleteBooking,
 };

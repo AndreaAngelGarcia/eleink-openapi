@@ -9,8 +9,8 @@ const router = express.Router();
 
 router.get('', getAllBookings);
 router.get('/:status', getBookingByStatus);
-router.put('/:id/accept', acceptBooking);
-router.put(':id/cancel', cancelBooking);
+router.put('/accept/:id', acceptBooking);
+router.put('/cancel/:id', cancelBooking);
 // router.put(':id/dateChange', changeDateBooking);
 router.delete('/:id', deleteBooking);
 

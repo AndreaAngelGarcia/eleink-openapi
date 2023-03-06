@@ -13,7 +13,7 @@ async function getUsers(req, res, next) {
   }
 }
 
-// RECOGER USUARIOS POR ID
+// RECOGER USUARIO POR ID
 async function getUser(req, res, next) {
   try {
     const { id } = req.params;
