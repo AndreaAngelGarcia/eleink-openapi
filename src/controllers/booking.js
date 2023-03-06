@@ -14,11 +14,11 @@ async function getAllBookings(req, res, next) {
 }
 
 // RECOGER CITA POR ID DE USER
-async function getBookingById(req, res, next) {
+async function getBookingByStatus(req, res, next) {
   try {
-    const { id } = req.params;
-    const booking = await bookingService.findBookingById(id);
-    logger.info('OK - Cita mostrada según id');
+    const { status } = req.params;
+    const booking = await bookingService.getBookingByStatus(status);
+    logger.info('OK - Cita mostrada según estado de la cita');
     return res.send(booking);
   } catch (error) {
     return next(error);
@@ -28,7 +28,7 @@ async function getBookingById(req, res, next) {
 // CREAR CITA
 async function createBooking(req, res, next) {
   try {
-    const file = req.file;
+    const { file } = req;
     const createdBooking = await bookingService.createBooking(req.body, file);
     res.status(201).send(createdBooking);
     logger.info('OK - Cita creada');
@@ -108,7 +108,7 @@ async function deleteBooking(req, res, next) {
 
 module.exports = {
   getAllBookings,
-  getBookingById,
+  getBookingByStatus,
   createBooking,
   acceptBooking,
   cancelBooking,

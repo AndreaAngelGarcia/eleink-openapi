@@ -26,4 +26,34 @@ module.exports = {
     examples,
     securitySchemes,
   },
+  tags: [
+    {
+      name: 'Sign in',
+      description: 'Registrarse en mi página web',
+    },
+    {
+      name: 'Log in',
+      description: 'Obtener el token del usuario con el email y contraseña',
+    },
+    {
+      name: 'Create Booking',
+      description: 'Coger cita para tatuarnos siendo ya usuarios',
+    },
+    {
+      name: 'Admin',
+      description: 'Rutas para el admin',
+    },
+    {
+      name: 'User',
+      description: 'Rutas para el usuario',
+    },
+    {
+      name: 'Upload',
+      description: 'Subir imagen con multer',
+    },
+    {
+      name: 'Mail',
+      description: 'Enviar correo electrónico',
+    },
+  ],
 };

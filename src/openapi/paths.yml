@@ -41,7 +41,7 @@
       security:
       - bearerAuth: []
       tags:
-      - Admin - users
+      - Admin
       summary: Recoger todos los usuarios en memoria
       description: Recoger los usuarios que están almacenadas en memoria
       responses:
@@ -60,7 +60,8 @@
       security:
       - bearerAuth: []
       tags:
-      - Admin - users
+      - Admin
+      - User
       summary: Editar un usuario específica
       description: Editar los datos de un usuario en específico
       parameters:
@@ -87,7 +88,7 @@
       security:
       - bearerAuth: []
       tags:
-      - Admin - users
+      - Admin
       summary: Eliminar usuario específica
       description: Eliminar las usuarios de la memoria
       parameters:
@@ -109,7 +110,7 @@
       security:
       - bearerAuth: []
       tags:
-      - Admin - booking
+      - Admin
       summary: Recoger todas las citas en memoria
       description: Recoger las citas que están almacenadas en memoria
       responses:
@@ -120,12 +121,12 @@
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Users"
+                  $ref: "#/components/schemas/Booking"
     post:
       security:
       - bearerAuth: []
       tags:
-      - Log in
+      - Create Booking
       summary: Crear una cita
       description: Crear una cita en específico en memoria en estado pendiente
       requestBody:
@@ -142,11 +143,28 @@
               schema:
                 $ref: "#/components/schemas/Booking"
 "/booking/{id}":
+    get:
+      security:
+      - bearerAuth: []
+      tags:
+      - Admin
+      - User
+      summary: Recoger todas las citas según id
+      description: Recoger las citas que están almacenadas en memoria según id
+      responses:
+        200:
+          description: Lista de citas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Booking"
     put:
       security:
       - bearerAuth: []
       tags:
-      - Admin - booking
+      - Admin
       summary: Editar una cita específica
       description: Editar los datos de un usuario en específico
       parameters:
@@ -173,7 +191,7 @@
       security:
       - bearerAuth: []
       tags:
-      - Admin - booking
+      - Admin
       summary: Cancelar una cita específica
       description: Eliminar cita en la memoria
       parameters:
@@ -193,7 +211,7 @@
 "/upload":
   post:
     tags:
-      - Booking
+      - Upload
     summary: "Carga una imagen"
     consumes:
       - "multipart/form-data" 
