@@ -5,17 +5,17 @@ const User = require('../models/user');
 const secret = 'root';
 
 const authMiddleware = async (req, res, next) => {
-  console.log(req.headers.authorization);
+  const token = req.headers.authorization;
 
-  const token = req.headers.authorization.substring(7);
-
-  if (!token) {
+  if (token === undefined) {
     return res.status(401).json({ message: 'No se proporcionó un token de autenticación.' });
   }
 
+  const tokenReal = req.headers.authorization.substring(7);
+
   try {
     // Verificar el token con la clave secreta
-    const decodedToken = jwt.verify(token, secret);
+    const decodedToken = jwt.verify(tokenReal, secret);
 
     // Buscar al usuario correspondiente al ID del token en la base de datos
     const user = await User.findById(decodedToken.userId);
@@ -40,7 +40,6 @@ const itsMe = async (req, res, next) => {
   if (req.user.rol === 'admin') {
     next();
   } else {
-
     if (req.params.password === req.user.email) {
       next();
     }
@@ -51,5 +50,5 @@ const itsMe = async (req, res, next) => {
 
 module.exports = {
   authMiddleware,
-  itsMe
+  itsMe,
 };

@@ -11,12 +11,6 @@ async function logIn(req, res, next) {
       return res.status(401).json({ message: 'El usuario o la contraseña es incorrecta' });
     }
 
-    /* const isPasswordValid = await (user.password);
-
-    if (!isPasswordValid === password) {
-      return res.status(401).json({ message: 'La contraseña no es correcta' });
-    } */
-
     const token = jwt.sign(
       { userId: user._id, email: user.email, rol: user.rol },
       'root',

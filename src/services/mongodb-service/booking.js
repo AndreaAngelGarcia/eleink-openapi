@@ -6,15 +6,21 @@ function getAllBookings(filters) {
   return Booking.find(filters).populate('user', '-password');
 }
 
-// BUSCAR USUARIO POR ID
-function findBookingById(id) {
-  return Booking.findById(id);
+// BUSCAR CITA POR STATUS
+async function getBookingByStatus(status) {
+  try {
+    const booking = await Booking.find({ status }).populate('user', '-password -rol -__v');
+    return booking;
+  } catch (error) {
+    logger.error(`Error find booking with status ${status}: ${error}`);
+    throw error;
+  }
 }
 
 // CREAR CITA
 async function createBooking(bookingData, file) {
   const pendingBooking = {
-    ...bookingData, 
+    ...bookingData,
     image: file.originalname,
     status: 'pending',
     date: 'pending',
@@ -93,7 +99,7 @@ async function deleteBooking(id) {
 
 module.exports = {
   getAllBookings,
-  findBookingById,
+  getBookingByStatus,
   createBooking,
   acceptBooking,
   cancelBooking,
