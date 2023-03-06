@@ -1,0 +1,348 @@
+"/signin":
+    post:
+      tags:
+      - Sign in
+      summary: Crear usuario en memoria
+      description: Crear un usuario en específico en memoria
+      requestBody:
+        description: Usuario creado
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PostUser"
+      responses:
+        201:
+          description: Usuario creado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostUser"
+"/login":
+    post:
+      tags:
+      - Log in
+      summary: Loguearnos en la página
+      description: Hacer login con un email y contraseña
+      requestBody:
+        description: Login completado
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Login"
+      responses:
+        201:
+          description: Login completado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Login"
+"/users":
+    get:
+      security:
+      - bearerAuth: []
+      tags:
+      - Admin
+      summary: Recoger todos los usuarios
+      description: Recoger los usuarios que están almacenadas en memoria
+      responses:
+        200:
+          description: Lista de usuarios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Users"
+        404:
+          description: Usuarios no recogidos
+"/users/{email}":
+    put:
+      security:
+      - bearerAuth: []
+      tags:
+      - Admin
+      - User
+      summary: Editar un usuario específico
+      description: Editar los datos de un usuario en específico
+      parameters:
+      - name: email
+        in: path
+        description: Pon el correo del usuario que deseas modificar
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Usuario editado
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PutUser"
+      responses:
+        201:
+          description: Usuario editado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Users"
+        404:
+          description: Usuario no modificado
+    delete:
+      security:
+      - bearerAuth: []
+      tags:
+      - Admin
+      summary: Eliminar usuario específico
+      description: Eliminar usuario de la memoria
+      parameters:
+      - name: email
+        in: path
+        description: Pon el nombre del email del usuario
+        required: true
+        schema:
+          type: string
+      responses:
+        201:
+          description: Usuario eliminado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteUser"
+        404:
+          description: Usuario no eliminado
+"/booking":
+    get:
+      security:
+      - bearerAuth: []
+      tags:
+      - Admin
+      summary: Recoger todas las citas en memoria
+      description: Recoger las citas que están almacenadas en memoria
+      responses:
+        200:
+          description: Lista de citas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Booking"
+        404:
+          description: Citas no encontradas
+    post:
+      security:
+      - bearerAuth: []
+      tags:
+      - Create Booking
+      summary: Crear una cita
+      description: Crear una cita en específico en memoria en estado pendiente
+      requestBody:
+        description: Cita creada
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PostBooking"
+      responses:
+        201:
+          description: Cita creada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Booking"
+        404:
+          description: Cita no creada
+"/booking/{status}":
+    get:
+      security:
+      - bearerAuth: []
+      tags:
+      - Admin
+      summary: Recoger todas las citas según el estado de la cita
+      description: Recoger las citas que están almacenadas en memoria según el status
+      responses:
+        200:
+          description: Lista de citas con el status indicado
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Booking"
+        404:
+          description: Citas no encontradas
+"/booking/{date}":
+    get:
+      security:
+      - bearerAuth: []
+      tags:
+      - Admin
+      summary: Recoger todas las citas según la fecha indicada
+      description: Recoger las citas que están almacenadas en memoria según la fecha indicada
+      responses:
+        200:
+          description: Lista de citas con la fecha indicada
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Booking"
+        404:
+          description: No se encuentran citas con esa fecha
+"/booking/{id}":
+    get:
+      security:
+      - bearerAuth: []
+      tags:
+      - User
+      summary: Recoger todas las citas según id del usuario
+      description: Recoger las citas que están almacenadas en memoria según id del usuario
+      responses:
+        200:
+          description: Lista de citas de un usuario en concreto
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Booking"
+    put:
+      security:
+      - bearerAuth: []
+      tags:
+      - Admin
+      summary: Editar una cita específica
+      description: Editar los datos de un usuario en específico
+      parameters:
+      - name: id
+        in: path
+        description: Pon el id de la cita
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Editar cita
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PutUser"
+      responses:
+        201:
+          description: Nota editada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Booking"
+    delete:
+      security:
+      - bearerAuth: []
+      tags:
+      - Admin
+      summary: Cancelar una cita específica
+      description: Eliminar cita en la memoria
+      parameters:
+      - name: id
+        in: path
+        description: Pon el id de la cita
+        required: true
+        schema:
+          type: string
+      responses:
+        201:
+          description: Cita eliminada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Booking"
+"/booking/{id}/accept":
+    put:
+      security:
+      - bearerAuth: []
+      tags:
+      - Admin
+      summary: Aceptar una cita
+      description: Aceptar una cita
+      parameters:
+      - name: id
+        in: path
+        description: Pon el id de la cita
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Editar cita
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PutBooking"
+      responses:
+        201:
+          description: Nota editada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Booking"
+"/booking/{id}/cancel":
+    put:
+      security:
+      - bearerAuth: []
+      tags:
+      - Admin
+      - User
+      summary: Cancelar una cita
+      description: Cancelar una cita
+      parameters:
+      - name: id
+        in: path
+        description: Pon el id de la cita
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Cancelar cita
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PutBooking"
+      responses:
+        201:
+          description: Nota editada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Booking"
+"/upload":
+  post:
+    tags:
+      - Upload
+    summary: "Carga una imagen"
+    consumes:
+      - "multipart/form-data" 
+    produces:
+      - "application/json"
+    parameters:
+      - in: formData
+        name: upFile
+        type: file 
+        required: true
+    responses:
+      200:
+        description: "La imagen se cargó correctamente"
+"/mail":
+  post:
+    tags:
+    - Mail
+    summary: Enviar email
+    description: Enviar email a un correo específico
+    requestBody:
+        description: Enviar mail
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Email"
+    responses:
+        201:
+          description: Correo enviado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Email"

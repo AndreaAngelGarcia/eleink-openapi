@@ -1,0 +1,47 @@
+{
+  "type": "commonjs",
+  "name": "eleink-openapi",
+  "version": "0.0.2",
+  "description": "Proyecto 2º trimestre DAWES",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --ignore-path .gitignore .",
+    "lint:fix": "eslint --fix --ignore-path .gitignore ."
+  },
+  "author": "Andrea Ángel",
+  "license": "ISC",
+  "devDependencies": {
+    "ava": "^5.1.0",
+    "eslint": "^8.27.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-ava": "^13.2.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-react": "^7.31.10",
+    "jest": "^29.4.3",
+    "nodemon": "^2.0.20"
+  },
+  "ava": {
+    "files": [
+      "test/**/*.test.js"
+    ]
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-openapi-validator": "^5.0.1",
+    "googleapis": "^110.0.0",
+    "js-yaml": "^4.1.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongodb": "^5.1.0",
+    "mongoose": "^6.9.1",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.1",
+    "sinon": "^15.0.1",
+    "swagger-ui-express": "^4.6.0",
+    "winston": "^3.8.2"
+  }
+}
