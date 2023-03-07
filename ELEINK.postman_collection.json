@@ -30,7 +30,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDAwNzkyYWU4MTk0NWY0ZWI1NWQ3YzEiLCJlbWFpbCI6ImFuZHJlYUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY3ODE5MTEwOCwiZXhwIjoxNjc4MTk0NzA4fQ.Udok4McjImeXPctGCq1kQD12SciAFHJkt6jDZa0xzWU",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDAwNzkyYWU4MTk0NWY0ZWI1NWQ3YzEiLCJlbWFpbCI6ImFuZHJlYUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY3ODE5OTkxNywiZXhwIjoxNjc4MjAzNTE3fQ.9-NXhgN3hHwOV8I4JR8yZPFUORzaZcgmWXyqsQRRUrE",
 											"type": "string"
 										}
 									]
@@ -93,18 +93,28 @@
 						{
 							"name": "Borrar usuario",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDAwNzkyYWU4MTk0NWY0ZWI1NWQ3YzEiLCJlbWFpbCI6ImFuZHJlYUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY3ODEzOTA1MSwiZXhwIjoxNjc4MTQyNjUxfQ.taJmtpEZCnDF69e5s5ihPMba_X3NvtOAjYX1jkHz_v4",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/user/eliminamelo2",
+									"raw": "http://localhost:3000/users/prueba",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"user",
-										"eliminamelo2"
+										"users",
+										"prueba"
 									]
 								}
 							},
@@ -121,11 +131,21 @@
 								"disableBodyPruning": true
 							},
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDAwNzkyYWU4MTk0NWY0ZWI1NWQ3YzEiLCJlbWFpbCI6ImFuZHJlYUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY3ODE5OTkxNywiZXhwIjoxNjc4MjAzNTE3fQ.9-NXhgN3hHwOV8I4JR8yZPFUORzaZcgmWXyqsQRRUrE",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"_id\": \"63f9ea3b49390c53e5a785df\",\r\n    \"date\": \"2023-03-25\",\r\n    \"status\": \"accepted\",\r\n    \"user\": \"63f9ea3b49390c53e5a785df\"\r\n}",
+									"raw": "",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -149,6 +169,16 @@
 						{
 							"name": "Recoger cita por status",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDAwNzkyYWU4MTk0NWY0ZWI1NWQ3YzEiLCJlbWFpbCI6ImFuZHJlYUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY3ODE5OTkxNywiZXhwIjoxNjc4MjAzNTE3fQ.9-NXhgN3hHwOV8I4JR8yZPFUORzaZcgmWXyqsQRRUrE",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -173,7 +203,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"date\": \"2023-03-28\",\r\n    \"status\": \"accepted\",\r\n    \"price\": 80\r\n}",
+									"raw": "{\r\n    \"date\": \"2023-03-28\",\r\n    \"price\": 100\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -181,7 +211,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/booking/63f9f924eae3d5dbcc7d9230",
+									"raw": "http://localhost:3000/booking/accept/6400da6a47113af63f77eff0",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -189,7 +219,8 @@
 									"port": "3000",
 									"path": [
 										"booking",
-										"63f9f924eae3d5dbcc7d9230"
+										"accept",
+										"6400da6a47113af63f77eff0"
 									]
 								}
 							},
@@ -210,7 +241,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/booking/cancel6400d71000243422051f6a69",
+									"raw": "http://localhost:3000/booking/cancel/6400d97b5e3feb863eda7522",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -218,7 +249,8 @@
 									"port": "3000",
 									"path": [
 										"booking",
-										"cancel6400d71000243422051f6a69"
+										"cancel",
+										"6400d97b5e3feb863eda7522"
 									]
 								}
 							},
@@ -227,11 +259,21 @@
 						{
 							"name": "Cambiar fecha de la cita",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDAwNzkyYWU4MTk0NWY0ZWI1NWQ3YzEiLCJlbWFpbCI6ImFuZHJlYUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY3ODE4ODc3OCwiZXhwIjoxNjc4MTkyMzc4fQ.2yMvE0mURxtnHyV-A9vLs9zPCiMQwPCtyaHfZA-K8BM",
+											"type": "string"
+										}
+									]
+								},
 								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"date\": \"2023-03-22\"\r\n}",
+									"raw": "{\r\n    \"date\": \"2023-03-20\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -269,7 +311,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/booking/6400742457adfb86ab35b36a",
+									"raw": "http://localhost:3000/booking/6400d97b5e3feb863eda7522",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -277,7 +319,7 @@
 									"port": "3000",
 									"path": [
 										"booking",
-										"6400742457adfb86ab35b36a"
+										"6400d97b5e3feb863eda7522"
 									]
 								}
 							},
@@ -296,10 +338,20 @@
 						{
 							"name": "Recoger cita por el id",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDAwNzkyYWU4MTk0NWY0ZWI1NWQ3YzEiLCJlbWFpbCI6ImFuZHJlYUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY3ODE5ODkwOCwiZXhwIjoxNjc4MjAyNTA4fQ.Z_1UsmWLmzoNs1v7o7EgMn270m4FyI5FxXKmndkC06g",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/booking/client/6400da6a47113af63f77eff0",
+									"raw": "http://localhost:3000/booking/client/6400e419099264c7ff666b0a",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -308,7 +360,7 @@
 									"path": [
 										"booking",
 										"client",
-										"6400da6a47113af63f77eff0"
+										"6400e419099264c7ff666b0a"
 									]
 								}
 							},
@@ -358,15 +410,15 @@
 									"raw": " {\r\n        \"_id\": \"63f7786b4542f598d99d429f\",\r\n        \"name\": \"prueba\",\r\n        \"email\": \"adios\",\r\n        \"birthday\": \"2023-02-23\",\r\n        \"phone\": 1234,\r\n        \"password\": \"string\",\r\n        \"userInstagram\": \"string\",\r\n        \"rol\": \"client\",\r\n        \"__v\": 0\r\n    }"
 								},
 								"url": {
-									"raw": "http://localhost:3000/user/hola",
+									"raw": "http://localhost:3000/users/manuel@gmail.com",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"user",
-										"hola"
+										"users",
+										"manuel@gmail.com"
 									]
 								}
 							},
@@ -382,8 +434,19 @@
 				{
 					"name": "Mandar email",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/mail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"mail"
+							]
+						}
 					},
 					"response": []
 				}
@@ -396,7 +459,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"Quiliano\",\r\n  \"email\": \"quiles@gmail.com\",\r\n  \"birthday\": \"2000/11/11\",\r\n  \"phone\": \"77777\",\r\n  \"password\": \"7777\",\r\n  \"userInstagram\": \"quiles\",\r\n  \"rol\": \"client\"\r\n}\r\n",
+					"raw": "{\r\n  \"name\": \"Franchonido\",\r\n  \"email\": \"fran@gmail.com\",\r\n  \"birthday\": \"1999/01/01\",\r\n  \"phone\": \"657889933\",\r\n  \"password\": \"8888\",\r\n  \"userInstagram\": \"franchonido\",\r\n  \"rol\": \"client\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -466,21 +529,26 @@
 						{
 							"key": "myFile",
 							"type": "file",
-							"src": "/B:/ANDREA/20230227_223936.jpg"
+							"src": "/B:/ANDREA/richiCV.jpg"
 						},
 						{
 							"key": "description",
-							"value": "hojas en los dedos",
+							"value": "tatuaje animal",
 							"type": "default"
 						},
 						{
 							"key": "bodyPlace",
-							"value": "mano derecha",
+							"value": "mano",
 							"type": "default"
 						},
 						{
 							"key": "size",
 							"value": "5cm",
+							"type": "default"
+						},
+						{
+							"key": "user",
+							"value": "640312295dea18bd88c21c2c",
 							"type": "default"
 						}
 					],
@@ -491,33 +559,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/booking/upload?description=hojas&bodyPlace=dedos&size=5cm&myFile",
+					"raw": "http://localhost:3000/createBooking",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"booking",
-						"upload"
-					],
-					"query": [
-						{
-							"key": "description",
-							"value": "hojas"
-						},
-						{
-							"key": "bodyPlace",
-							"value": "dedos"
-						},
-						{
-							"key": "size",
-							"value": "5cm"
-						},
-						{
-							"key": "myFile",
-							"value": null
-						}
+						"createBooking"
 					]
 				}
 			},
