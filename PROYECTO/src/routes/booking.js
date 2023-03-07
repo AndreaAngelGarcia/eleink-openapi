@@ -1,18 +1,26 @@
 const express = require('express');
-const { upload } = require('../middleware/multer-middleware');
-
-const {
-  getAllBookings, createBooking, acceptBooking, cancelBooking, deleteBooking, getBookingByStatus,
-} = require('../controllers/booking');
 
 const router = express.Router();
 
-router.get('', getAllBookings);
-router.get('/:status', getBookingByStatus);
-router.put('/accept/:id', acceptBooking);
-router.put('/cancel/:id', cancelBooking);
-// router.put(':id/dateChange', changeDateBooking);
-router.delete('/:id', deleteBooking);
+const {
+  getAllBookings, createBooking, acceptBooking, cancelBooking, deleteBooking,
+  getBookingByStatus, getBookingById, changeDateBooking,
+} = require('../controllers/booking');
+
+const { authMiddleware } = require('../middleware/auth-middleware');
+const { itsMe } = require('../middleware/auth-middleware');
+const { upload } = require('../middleware/multer-middleware');
+
+// ADMIN
+router.get('', authMiddleware, itsMe, getAllBookings);
+router.get('/:status', authMiddleware, itsMe, getBookingByStatus);
+router.put('/accept/:id', authMiddleware, itsMe, acceptBooking);
+router.put('/cancel/:id', authMiddleware, itsMe, cancelBooking);
+router.put('/dateChange/:id', authMiddleware, itsMe, changeDateBooking);
+router.delete('/:id', authMiddleware, itsMe, deleteBooking);
+
+// CLIENT
+router.get('/client/:id', authMiddleware, getBookingById);
 
 router.post('/upload', upload.single('myFile'), createBooking, (req, res) => {
   res.json({ message: 'Archivo subido exitosamente' });
