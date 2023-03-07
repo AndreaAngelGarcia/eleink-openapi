@@ -1,0 +1,556 @@
+{
+	"info": {
+		"_postman_id": "69c2b7a0-f70c-44a5-b9b3-88180604b4cf",
+		"name": "ELEINK",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ADMIN",
+			"item": [
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Users",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDAwNzkyYWU4MTk0NWY0ZWI1NWQ3YzEiLCJlbWFpbCI6ImFuZHJlYUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY3ODE5MTEwOCwiZXhwIjoxNjc4MTk0NzA4fQ.Udok4McjImeXPctGCq1kQD12SciAFHJkt6jDZa0xzWU",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Editar usuario",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDAwNzkyYWU4MTk0NWY0ZWI1NWQ3YzEiLCJlbWFpbCI6ImFuZHJlYUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY3ODEzOTA1MSwiZXhwIjoxNjc4MTQyNjUxfQ.taJmtpEZCnDF69e5s5ihPMba_X3NvtOAjYX1jkHz_v4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\": \"6400794fe81945f4eb55d7c6\",\r\n    \"name\": \"manuel\",\r\n    \"email\": \"manuel@gmail.com\",\r\n    \"birthday\": \"1999/06/04\",\r\n    \"phone\": 12345,\r\n    \"password\": \"1111\",\r\n    \"userInstagram\": \"manuel\",\r\n    \"rol\": \"client\",\r\n    \"__v\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/users/manuel@gmail.com",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"manuel@gmail.com"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Borrar usuario",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/user/eliminamelo2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"user",
+										"eliminamelo2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Booking",
+					"item": [
+						{
+							"name": "Recoger citas",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\": \"63f9ea3b49390c53e5a785df\",\r\n    \"date\": \"2023-03-25\",\r\n    \"status\": \"accepted\",\r\n    \"user\": \"63f9ea3b49390c53e5a785df\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/booking",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"booking"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Recoger cita por status",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/booking/pending",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"booking",
+										"pending"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Aceptar cita",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"2023-03-28\",\r\n    \"status\": \"accepted\",\r\n    \"price\": 80\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/booking/63f9f924eae3d5dbcc7d9230",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"booking",
+										"63f9f924eae3d5dbcc7d9230"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cancelar cita",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/booking/cancel6400d71000243422051f6a69",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"booking",
+										"cancel6400d71000243422051f6a69"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cambiar fecha de la cita",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"2023-03-22\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/booking/dateChange/6400da6a47113af63f77eff0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"booking",
+										"dateChange",
+										"6400da6a47113af63f77eff0"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar cita",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/booking/6400742457adfb86ab35b36a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"booking",
+										"6400742457adfb86ab35b36a"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "CLIENT",
+			"item": [
+				{
+					"name": "Booking",
+					"item": [
+						{
+							"name": "Recoger cita por el id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/booking/client/6400da6a47113af63f77eff0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"booking",
+										"client",
+										"6400da6a47113af63f77eff0"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cancel booking",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"2023-03-28\",\r\n    \"status\": \"accepted\",\r\n    \"price\": 80\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/booking/63f9f924eae3d5dbcc7d9230",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"booking",
+										"63f9f924eae3d5dbcc7d9230"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Editar usuario",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": " {\r\n        \"_id\": \"63f7786b4542f598d99d429f\",\r\n        \"name\": \"prueba\",\r\n        \"email\": \"adios\",\r\n        \"birthday\": \"2023-02-23\",\r\n        \"phone\": 1234,\r\n        \"password\": \"string\",\r\n        \"userInstagram\": \"string\",\r\n        \"rol\": \"client\",\r\n        \"__v\": 0\r\n    }"
+								},
+								"url": {
+									"raw": "http://localhost:3000/user/hola",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"user",
+										"hola"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "MAIL",
+			"item": [
+				{
+					"name": "Mandar email",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SIGN IN",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Quiliano\",\r\n  \"email\": \"quiles@gmail.com\",\r\n  \"birthday\": \"2000/11/11\",\r\n  \"phone\": \"77777\",\r\n  \"password\": \"7777\",\r\n  \"userInstagram\": \"quiles\",\r\n  \"rol\": \"client\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOGIN",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"andrea@gmail.com\",\r\n  \"password\": \"root\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear cita",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2Y3YmI1YmYyM2VkZWNlYmIwNzY3NTgiLCJlbWFpbCI6ImhvbGEiLCJpYXQiOjE2Nzc2MTI3NjEsImV4cCI6MTY3NzYxNjM2MX0.X5BUOH8o49f8iAXogaepmis6Cm9WMjLMH1hNC1a1DbE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "myFile",
+							"type": "file",
+							"src": "/B:/ANDREA/20230227_223936.jpg"
+						},
+						{
+							"key": "description",
+							"value": "hojas en los dedos",
+							"type": "default"
+						},
+						{
+							"key": "bodyPlace",
+							"value": "mano derecha",
+							"type": "default"
+						},
+						{
+							"key": "size",
+							"value": "5cm",
+							"type": "default"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/booking/upload?description=hojas&bodyPlace=dedos&size=5cm&myFile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"booking",
+						"upload"
+					],
+					"query": [
+						{
+							"key": "description",
+							"value": "hojas"
+						},
+						{
+							"key": "bodyPlace",
+							"value": "dedos"
+						},
+						{
+							"key": "size",
+							"value": "5cm"
+						},
+						{
+							"key": "myFile",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "",
+							"type": "file",
+							"src": "/B:/ANDREA/error1.JPG"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"upload"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
