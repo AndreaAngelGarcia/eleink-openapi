@@ -36,6 +36,24 @@ async function getBookingByStatus(req, res, next) {
   }
 }
 
+// RECOGER CITAS SEGÚN ID DEL USUARIO
+async function getBookingById(req, res, next) {
+  try {
+    const { id } = req.params;
+    const booking = await bookingService.getBookingById(id);
+    logger.info('OK - Cita mostradas según el id del usuario');
+    return res.send(booking);
+  } catch (error) {
+    if (error.code === 11000) {
+      error.statusCode = 409;
+    } else {
+      error.statusCode = 400;
+    }
+    logger.error('KO - Citas no mostradas según id del usuario');
+    return next(error);
+  }
+}
+
 // CREAR CITA
 async function createBooking(req, res, next) {
   try {
@@ -118,6 +136,7 @@ async function deleteBooking(req, res, next) {
 module.exports = {
   getAllBookings,
   getBookingByStatus,
+  getBookingById,
   createBooking,
   acceptBooking,
   cancelBooking,

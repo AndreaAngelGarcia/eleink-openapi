@@ -4,7 +4,7 @@ const { Booking } = require('../../models');
 
 // BUSCAR CITA
 function getAllBookings(filters) {
-  return Booking.find(filters).populate('user', '-password');
+  return Booking.find(filters).populate('user', '-password -rol -__v');
 }
 
 // BUSCAR CITA POR STATUS
@@ -14,6 +14,17 @@ async function getBookingByStatus(status) {
     return booking;
   } catch (error) {
     logger.error(`Error find booking with status ${status}: ${error}`);
+    throw error;
+  }
+}
+
+// BUSCAR CITA SEGÚN ID DEL USUARIO
+async function getBookingById(id) {
+  try {
+    const booking = await Booking.findById(id).populate('user', '-password -rol -__v');
+    return booking;
+  } catch (error) {
+    logger.error(`Error find booking with id ${id}: ${error}`);
     throw error;
   }
 }
@@ -106,6 +117,7 @@ async function deleteBooking(id) {
 module.exports = {
   getAllBookings,
   getBookingByStatus,
+  getBookingById,
   createBooking,
   acceptBooking,
   cancelBooking,
