@@ -40,8 +40,12 @@ module.exports = {
       description: 'Coger cita para tatuarnos siendo ya usuarios',
     },
     {
-      name: 'Admin',
-      description: 'Rutas para el admin',
+      name: 'Admin - Users',
+      description: 'Rutas para el admin de usuarios',
+    },
+    {
+      name: 'Admin - Booking',
+      description: 'Rutas para el admin de citas',
     },
     {
       name: 'User',

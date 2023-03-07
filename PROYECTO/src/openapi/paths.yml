@@ -41,7 +41,7 @@
       security:
       - bearerAuth: []
       tags:
-      - Admin
+      - Admin - Users
       summary: Recoger todos los usuarios
       description: Recoger los usuarios que están almacenadas en memoria
       responses:
@@ -60,7 +60,7 @@
       security:
       - bearerAuth: []
       tags:
-      - Admin
+      - Admin - Users
       - User
       summary: Editar un usuario específico
       description: Editar los datos de un usuario en específico
@@ -90,7 +90,7 @@
       security:
       - bearerAuth: []
       tags:
-      - Admin
+      - Admin - Users
       summary: Eliminar usuario específico
       description: Eliminar usuario de la memoria
       parameters:
@@ -114,7 +114,7 @@
       security:
       - bearerAuth: []
       tags:
-      - Admin
+      - Admin - Booking
       summary: Recoger todas las citas en memoria
       description: Recoger las citas que están almacenadas en memoria
       responses:
@@ -128,6 +128,7 @@
                   $ref: "#/components/schemas/Booking"
         404:
           description: Citas no encontradas
+"/createBooking":
     post:
       security:
       - bearerAuth: []
@@ -136,11 +137,14 @@
       summary: Crear una cita
       description: Crear una cita en específico en memoria en estado pendiente
       requestBody:
-        description: Cita creada
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/PostBooking"
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary    
       responses:
         201:
           description: Cita creada
@@ -148,16 +152,20 @@
             application/json:
               schema:
                 $ref: "#/components/schemas/Booking"
-        404:
-          description: Cita no creada
 "/booking/{status}":
     get:
       security:
       - bearerAuth: []
       tags:
-      - Admin
+      - Admin - Booking
       summary: Recoger todas las citas según el estado de la cita
-      description: Recoger las citas que están almacenadas en memoria según el status
+      description: Recoger las citas que están almacenadas en memoria
+      parameters:
+      - name: status
+        in: path
+        description: Pon el estado de la cita que buscas
+        schema:
+          type: string según el status
       responses:
         200:
           description: Lista de citas con el status indicado
@@ -169,25 +177,6 @@
                   $ref: "#/components/schemas/Booking"
         404:
           description: Citas no encontradas
-"/booking/{date}":
-    get:
-      security:
-      - bearerAuth: []
-      tags:
-      - Admin
-      summary: Recoger todas las citas según la fecha indicada
-      description: Recoger las citas que están almacenadas en memoria según la fecha indicada
-      responses:
-        200:
-          description: Lista de citas con la fecha indicada
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Booking"
-        404:
-          description: No se encuentran citas con esa fecha
 "/booking/{id}":
     get:
       security:
@@ -205,39 +194,12 @@
                 type: array
                 items:
                   $ref: "#/components/schemas/Booking"
-    put:
-      security:
-      - bearerAuth: []
-      tags:
-      - Admin
-      summary: Editar una cita específica
-      description: Editar los datos de un usuario en específico
-      parameters:
-      - name: id
-        in: path
-        description: Pon el id de la cita
-        required: true
-        schema:
-          type: string
-      requestBody:
-        description: Editar cita
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/PutUser"
-      responses:
-        201:
-          description: Nota editada correctamente
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Booking"
     delete:
       security:
       - bearerAuth: []
       tags:
-      - Admin
-      summary: Cancelar una cita específica
+      - Admin - Booking
+      summary: Eliminar una cita específica
       description: Eliminar cita en la memoria
       parameters:
       - name: id
@@ -253,12 +215,12 @@
             application/json:
               schema:
                 $ref: "#/components/schemas/Booking"
-"/booking/{id}/accept":
+"/booking/accept/{id}":
     put:
       security:
       - bearerAuth: []
       tags:
-      - Admin
+      - Admin - Booking
       summary: Aceptar una cita
       description: Aceptar una cita
       parameters:
@@ -266,27 +228,25 @@
         in: path
         description: Pon el id de la cita
         required: true
-        schema:
-          type: string
       requestBody:
         description: Editar cita
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PutBooking"
+              $ref: "#/components/schemas/AcceptBooking"
       responses:
         201:
-          description: Nota editada correctamente
+          description: Cita aceptada correctamente
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Booking"
-"/booking/{id}/cancel":
+"/booking/cancel/{id}":
     put:
       security:
       - bearerAuth: []
       tags:
-      - Admin
+      - Admin - Booking
       - User
       summary: Cancelar una cita
       description: Cancelar una cita
@@ -297,15 +257,35 @@
         required: true
         schema:
           type: string
+      responses:
+        201:
+          description: Cita cancelada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Booking"
+"/booking/dateChange/{id}":
+    put:
+      security:
+      - bearerAuth: []
+      tags:
+      - Admin - Booking
+      summary: Cambiar fecha de  una cita
+      description: Cambiar fecha de una cita
+      parameters:
+      - name: id
+        in: path
+        description: Pon el id de la cita
+        required: true
       requestBody:
-        description: Cancelar cita
+        description: Editar fecha de la cita
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PutBooking"
+              $ref: "#/components/schemas/dateChangeBooking"
       responses:
         201:
-          description: Nota editada correctamente
+          description: Cita aceptada correctamente
           content:
             application/json:
               schema:

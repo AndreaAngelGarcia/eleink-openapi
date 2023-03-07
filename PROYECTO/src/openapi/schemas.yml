@@ -37,16 +37,28 @@ Booking:
     user: 
       type: string
 PostBooking:
-    type: object
-    properties:
-      description: 
-        type: string
-      bodyPlace: 
-        type: string
-      size: 
-        type: string
-      image: 
-        type: string
+  type: object
+  properties:
+    description: 
+      type: string
+    bodyPlace: 
+      type: string
+    size: 
+      type: string
+    user: 
+      type: string
+AcceptBooking:
+  type: object
+  properties:
+    date: 
+      type: string
+    price: 
+      type: string
+dateChangeBooking:
+  type: object
+  properties:
+    date: 
+      type: string
 PostUser:
   type: object
   properties:
