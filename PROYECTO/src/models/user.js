@@ -10,21 +10,4 @@ const userSchema = new Schema({
   rol: { type: String, enum: ['admin', 'client'], required: true },
 });
 
-// eslint-disable-next-line func-names, consistent-return
-userSchema.pre('save', async function (next) {
-  const user = this;
-
-  if (user.rol !== 'admin') {
-    return next();
-  }
-
-  const count = await this.model('Users').countDocuments({ rol: 'admin' });
-  if (count > 0) {
-    const error = new Error('Ya hay un usuario con rol de "admin" en la base de datos');
-    return next(error);
-  }
-
-  next();
-});
-
 module.exports = model('Users', userSchema);

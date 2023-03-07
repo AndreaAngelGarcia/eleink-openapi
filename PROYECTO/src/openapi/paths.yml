@@ -64,13 +64,6 @@
       - User
       summary: Editar un usuario específico
       description: Editar los datos de un usuario en específico
-      parameters:
-      - name: email
-        in: path
-        description: Pon el correo del usuario que deseas modificar
-        required: true
-        schema:
-          type: string
       requestBody:
         description: Usuario editado
         content:
@@ -96,7 +89,7 @@
       parameters:
       - name: email
         in: path
-        description: Pon el nombre del email del usuario
+        description: Pon el email del usuario
         required: true
         schema:
           type: string
@@ -177,44 +170,31 @@
                   $ref: "#/components/schemas/Booking"
         404:
           description: Citas no encontradas
-"/booking/{id}":
+"/booking/client/{id}":
     get:
       security:
       - bearerAuth: []
       tags:
       - User
-      summary: Recoger todas las citas según id del usuario
-      description: Recoger las citas que están almacenadas en memoria según id del usuario
+      summary: Recoger todas las citas según el id 
+      description: Recoger las citas que están almacenadas en memoria según id
+      parameters:
+      - name: id
+        in: path
+        description: Pon el id de la cita que buscas
+        schema:
+          type: string el id
       responses:
         200:
-          description: Lista de citas de un usuario en concreto
+          description: Lista de citas con el id indicado
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: "#/components/schemas/Booking"
-    delete:
-      security:
-      - bearerAuth: []
-      tags:
-      - Admin - Booking
-      summary: Eliminar una cita específica
-      description: Eliminar cita en la memoria
-      parameters:
-      - name: id
-        in: path
-        description: Pon el id de la cita
-        required: true
-        schema:
-          type: string
-      responses:
-        201:
-          description: Cita eliminada
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Booking"
+        404:
+          description: Citas no encontradas
 "/booking/accept/{id}":
     put:
       security:
@@ -290,23 +270,28 @@
             application/json:
               schema:
                 $ref: "#/components/schemas/Booking"
-"/upload":
-  post:
-    tags:
-      - Upload
-    summary: "Carga una imagen"
-    consumes:
-      - "multipart/form-data" 
-    produces:
-      - "application/json"
-    parameters:
-      - in: formData
-        name: upFile
-        type: file 
+"/booking//{id}":
+    delete:
+      security:
+      - bearerAuth: []
+      tags:
+      - Admin - Booking
+      summary: Eliminar una cita específica
+      description: Eliminar cita en la memoria
+      parameters:
+      - name: id
+        in: path
+        description: Pon el id de la cita
         required: true
-    responses:
-      200:
-        description: "La imagen se cargó correctamente"
+        schema:
+          type: string
+      responses:
+        201:
+          description: Cita eliminada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Booking"
 "/mail":
   post:
     tags:

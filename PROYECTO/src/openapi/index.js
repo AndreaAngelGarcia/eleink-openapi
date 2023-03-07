@@ -52,10 +52,6 @@ module.exports = {
       description: 'Rutas para el usuario',
     },
     {
-      name: 'Upload',
-      description: 'Subir imagen con multer',
-    },
-    {
       name: 'Mail',
       description: 'Enviar correo electrónico',
     },
