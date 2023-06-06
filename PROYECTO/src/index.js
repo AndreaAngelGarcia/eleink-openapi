@@ -4,7 +4,7 @@ const config = require('./config');
 const { logger } = require('./utils');
 
 const corsOptions = {
-  origin: 'https://eleink-openapi.onrender.com',
+  origin: '*',
 };
 
 app.use(cors(corsOptions));
