@@ -3,7 +3,12 @@ const app = require('./app');
 const config = require('./config');
 const { logger } = require('./utils');
 
-app.use(cors());
+const corsOptions = {
+  origin: 'https://eleink-openapi.onrender.com',
+};
+
+app.use(cors(corsOptions));
+
 const { port } = config;
 
 app.listen(port, err => {
