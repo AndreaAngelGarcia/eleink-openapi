@@ -270,7 +270,7 @@
             application/json:
               schema:
                 $ref: "#/components/schemas/Booking"
-"/booking//{id}":
+"/booking/{id}":
     delete:
       security:
       - bearerAuth: []

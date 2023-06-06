@@ -67,7 +67,7 @@ async function createBooking(req, res, next) {
     } else {
       error.statusCode = 400;
     }
-    logger.error('Cita no creado');
+    logger.error('Cita no creada');
     next(error);
   }
 }
