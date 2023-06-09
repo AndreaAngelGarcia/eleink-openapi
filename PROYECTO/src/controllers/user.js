@@ -1,5 +1,6 @@
 const { logger } = require('../utils');
 const userService = require('../services/mongodb-service/user');
+const user = require('../models/user');
 
 // RECOGER USUARIOS
 async function getUsers(req, res, next) {
@@ -29,6 +30,7 @@ async function getUser(req, res, next) {
 async function createUser(req, res, next) {
   try {
     const userBody = req.body;
+    userBody.rol = 'client';
     const createdUser = await userService.createUser(userBody);
     // userService.createUser(req.body);
     res.status(201).send(createdUser);

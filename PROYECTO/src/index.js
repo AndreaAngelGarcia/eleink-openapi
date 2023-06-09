@@ -1,13 +1,6 @@
-const cors = require('cors');
 const app = require('./app');
 const config = require('./config');
 const { logger } = require('./utils');
-
-const corsOptions = {
-  origin: '*',
-};
-
-app.use(cors(corsOptions));
 
 const { port } = config;
 

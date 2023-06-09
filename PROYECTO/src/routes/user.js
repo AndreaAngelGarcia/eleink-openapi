@@ -8,7 +8,7 @@ const UserController = require('../controllers/user');
 
 router.get('', authMiddleware, itsMe, UserController.getUsers);
 router.get('/:id', authMiddleware, itsMe, UserController.getUser);
-router.put('/:email', authMiddleware, itsMe, UserController.updateUser);
-router.delete('/:email', authMiddleware, itsMe, UserController.deleteUser);
+router.put('/:email', UserController.updateUser);
+router.delete('/:email', UserController.deleteUser);
 
 module.exports = router;

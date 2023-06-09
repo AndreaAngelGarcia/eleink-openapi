@@ -17,7 +17,15 @@ async function logIn(req, res, next) {
       { expiresIn: '1h' },
     );
 
-    res.status(200).json({ token });
+    res.status(200).json({
+      token,
+      name: user.name,
+      email: user.email,
+      birthday: user.birthday,
+      phone: user.phone,
+      password: user.password,
+      userInstagram: user.userInstagram,
+    });
   } catch (error) {
     next(error);
   }
