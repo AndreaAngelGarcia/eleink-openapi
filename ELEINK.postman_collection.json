@@ -76,12 +76,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/users/manuel@gmail.com",
-									"protocol": "http",
+									"raw": "https://eleink-openapi.onrender.com/users/manuel@gmail.com",
+									"protocol": "https",
 									"host": [
-										"localhost"
+										"eleink-openapi",
+										"onrender",
+										"com"
 									],
-									"port": "3000",
 									"path": [
 										"users",
 										"manuel@gmail.com"
@@ -106,12 +107,13 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/users/prueba",
-									"protocol": "http",
+									"raw": "https://eleink-openapi.onrender.com/users/prueba",
+									"protocol": "https",
 									"host": [
-										"localhost"
+										"eleink-openapi",
+										"onrender",
+										"com"
 									],
-									"port": "3000",
 									"path": [
 										"users",
 										"prueba"
@@ -410,12 +412,13 @@
 									"raw": " {\r\n        \"_id\": \"63f7786b4542f598d99d429f\",\r\n        \"name\": \"prueba\",\r\n        \"email\": \"adios\",\r\n        \"birthday\": \"2023-02-23\",\r\n        \"phone\": 1234,\r\n        \"password\": \"string\",\r\n        \"userInstagram\": \"string\",\r\n        \"rol\": \"client\",\r\n        \"__v\": 0\r\n    }"
 								},
 								"url": {
-									"raw": "http://localhost:3000/users/manuel@gmail.com",
-									"protocol": "http",
+									"raw": "https://eleink-openapi.onrender.com/users/manuel@gmail.com",
+									"protocol": "https",
 									"host": [
-										"localhost"
+										"eleink-openapi",
+										"onrender",
+										"com"
 									],
-									"port": "3000",
 									"path": [
 										"users",
 										"manuel@gmail.com"
@@ -467,12 +470,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/signin",
-					"protocol": "http",
+					"raw": "https://eleink-openapi.onrender.com/signin",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"eleink-openapi",
+						"onrender",
+						"com"
 					],
-					"port": "3000",
 					"path": [
 						"signin"
 					]
@@ -482,27 +486,40 @@
 		},
 		{
 			"name": "LOGIN",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"andrea@gmail.com\",\r\n  \"password\": \"root\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
 					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDAwNzkyYWU4MTk0NWY0ZWI1NWQ3YzEiLCJlbWFpbCI6ImFuZHJlYUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY3ODE5OTkxNywiZXhwIjoxNjc4MjAzNTE3fQ.9-NXhgN3hHwOV8I4JR8yZPFUORzaZcgmWXyqsQRRUrE",
+							"type": "string"
+						}
+					]
 				},
+				"method": "GET",
+				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/login",
-					"protocol": "http",
+					"raw": "https://eleink-openapi.onrender.com/users",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"eleink-openapi",
+						"onrender",
+						"com"
 					],
-					"port": "3000",
 					"path": [
-						"login"
+						"users"
 					]
 				}
 			},
@@ -529,21 +546,21 @@
 						{
 							"key": "myFile",
 							"type": "file",
-							"src": "/B:/ANDREA/richiCV.jpg"
+							"src": "/B:/ANDREA/IMG_2770.jpg"
 						},
 						{
 							"key": "description",
-							"value": "tatuaje animal",
+							"value": "tatuaje sevillafc",
 							"type": "default"
 						},
 						{
 							"key": "bodyPlace",
-							"value": "mano",
+							"value": "brazo izquierdo",
 							"type": "default"
 						},
 						{
 							"key": "size",
-							"value": "5cm",
+							"value": "20cm",
 							"type": "default"
 						},
 						{
