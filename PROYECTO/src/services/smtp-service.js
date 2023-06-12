@@ -53,13 +53,14 @@ async function sendMail(content) {
 }
 
 // eslint-disable-next-line consistent-return
-async function sendMailForm(email, name) {
+async function sendMailForm(email, name, phone, instagram) {
   try {
-    const text = `Hola, mi correo es: ${email} + mi nombre es: ${name}`;
+    const text = `Hola ${email}, hemos recibido su solicitud de cita. Lo más pronto posible nos pondremos en contacto con usted, vía telefono: ${phone} o vía instagram: ${instagram}. Muchas gracias!!`;
+
     const info = await transporter.sendMail({
       from: 'andreaangelgarcia@gmail.com',
-      to: email,
-      subject: 'Cita ELEINK',
+      to: name,
+      subject: 'Cita Eleink',
       text,
     });
 

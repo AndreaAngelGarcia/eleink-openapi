@@ -16,8 +16,6 @@ async function createMailForm(req, res, next) {
     } = req.body;
     // eslint-disable-next-line max-len
     const emailId = await smtpService.sendMailForm(name, email, phone, instagram, size, description);
-    console.log({ id: emailId });
-    console.log(emailId);
   } catch (error) {
     next(error);
   }
