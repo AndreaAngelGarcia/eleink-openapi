@@ -7,6 +7,7 @@ const UserRouter = require('./user');
 const BookingRouter = require('./booking');
 const smtpController = require('../controllers/smtp');
 const { createUser } = require('../controllers/user');
+const { createMailForm } = require('../controllers/smtp');
 const { createBooking } = require('../controllers/booking');
 const LoginController = require('../controllers/loginController');
 const adminAuth = require('../middleware/admin-middleware');
@@ -25,5 +26,7 @@ router.use('/users', UserRouter);
 router.use('/booking', BookingRouter);
 
 router.post('/mail', smtpController.createMail);
+
+router.post('/mailform', createMailForm);
 
 module.exports = router;
