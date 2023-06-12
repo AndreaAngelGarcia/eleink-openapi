@@ -9,6 +9,21 @@ async function createMail(req, res, next) {
   }
 }
 
+async function createMailForm(req, res, next) {
+  try {
+    const {
+      name, email, phone, instagram, size, description,
+    } = req.body;
+    // eslint-disable-next-line max-len
+    const emailId = await smtpService.sendMailForm(name, email, phone, instagram, size, description);
+    console.log({ id: emailId });
+    console.log(emailId);
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   createMail,
+  createMailForm,
 };

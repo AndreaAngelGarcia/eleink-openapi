@@ -52,7 +52,27 @@ async function sendMail(content) {
   return info;
 }
 
+// eslint-disable-next-line consistent-return
+async function sendMailForm(email, name) {
+  try {
+    const text = `Hola, mi correo es: ${email} + mi nombre es: ${name}`;
+    const info = await transporter.sendMail({
+      from: 'andreaangelgarcia@gmail.com',
+      to: email,
+      subject: 'Cita ELEINK',
+      text,
+    });
+
+    console.log(`Correo enviado a: ${email}`);
+
+    return info;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 module.exports = {
   setConfig,
   sendMail,
+  sendMailForm,
 };
